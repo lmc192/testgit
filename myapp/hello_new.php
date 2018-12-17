@@ -1,6 +1,7 @@
 <?php
 
-echo 'TEST_COME FROM WINDOWS'
+echo 'TEST_COME FROM WINDOWS';
+echo $x;
 
 //require './MyApp/MyApp.class.php';
 

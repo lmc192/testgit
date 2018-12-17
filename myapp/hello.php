@@ -16,7 +16,11 @@ echo 'TEST'
 
 ?>
 
-<h2><?php echo htmlspecialchars ($data[0]['user_Display_Name']); ?></h2>
+<!--<h2>
+<?php 
+//echo htmlspecialchars ($data[0]['user_Display_Name']); 
+?>
+</h2>-->
 
 <?php
 

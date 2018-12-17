@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<style>
+		table, th, td {
+		border: 1px solid black;
+		}
+		</style>
+		<title>CatSite</title>
+	</head>
+	
+	<body>
+		<h1><img src="images/header_image.jpg" alt="ginger">CATS</h1>
+		<p>Welcome to Cats Site!  Where you can add your cat to our database</p>
+		<table style ="width:70%">
+			<tr>
+				<th>Name</th>
+				<th>Age</th>
+				<th>Breed</th>
+			</tr>
+		</table><br>
+		
+		<!--PHP CODE TO GO IN HERE TO SEND DATA TO DATABASE-->
+		<form>
+			<fieldset>
+				<legend>Add your own cat here!</legend><br>
+				Name:<br>
+				<input type="text" name="name"><br><br>
+				Age:<br>
+				<input type="text" name="age"><br><br>
+				Breed:<br>
+				<input type="text" name="breed"><br><br>
+				<input type="submit" value="Submit"><br>
+			</fieldset>
+		</form>
+	</body>
+</html>

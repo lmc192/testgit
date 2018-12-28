@@ -1,0 +1,109 @@
+/*Colour Palette
+#42F2F7 - light turquoise
+#46ACC2 - dark turquoise
+#498C8A - darker turquoise
+#4B6858 - dark green
+#4D4730 - dark brown
+*/
+
+/* Font File
+-------------------------*/
+@font-face {
+  font-family: 'little-lord-font-leroy';
+  src: url(../fonts/little-lord-font-leroy/little-lord-font-leroy.ttf);
+}
+
+/* Global styles
+-------------------------*/
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+body {
+  font-family: 'Lora', serif;
+  margin: 0;
+}
+h1, h2 {
+  font-family: 'Abril Fatface', cursive;
+  font-weight: 400;
+}
+h1 {
+  font-size: 80px;
+}
+h2 {
+  font-size: 40px;
+  margin-top: 0;
+}
+a {
+  color: #4B6858;
+}
+a:hover {
+  /*removes default underline when hover over element*/
+  text-decoration: none;
+}
+.content-wrap {
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 50px;
+  /* clears floats */
+  overflow: auto;
+}
+.col-narrow {
+  width: 30%;
+  float: left;
+  /* border: 1px solid black; */
+  min-height: 175px;
+}
+.col-wide {
+  width: 70%;
+  float: left;
+  padding-left: 20px;
+  /* border: 1px solid black; */
+  min-height: 175px;
+}
+
+/* Header and Footer styles
+-------------------------*/
+header, footer {
+  background: #498C8A;
+  color: #42F2F7;
+}
+/* header */
+.profile-img {
+  /* width: 300px; */
+  border-radius: 50%;
+  /* float: left; */
+  /* margin-right: 30px; */
+}
+
+/* aligns header text and image */
+/* header {
+  text-align: center;
+} */
+header h1, header h2 {
+  color: white;
+  margin: 0;
+}
+/* footer */
+footer {
+  text-align: center;
+}
+.contact-info a {
+  padding: 10px;
+  display: inline-block;
+}
+
+/* Work Experience
+-------------------------*/
+.work {
+  background: #46ACC2;
+}
+
+/* Education
+-------------------------*/
+.education {
+  background: #42F2F7;
+}

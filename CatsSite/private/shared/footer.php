@@ -11,3 +11,8 @@
 
 	</body>
 </html>
+
+<!-- disconnects from database at the 'bottom' of each page -->
+<?php
+db_disconnect($db);
+ ?>

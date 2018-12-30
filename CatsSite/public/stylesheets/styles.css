@@ -8,26 +8,33 @@
 
 /* Font File
 -------------------------*/
-@font-face {
-  font-family: 'little-lord-font-leroy';
+/* @font-face {
+  font-family: 'little-lord-font-leroy', sans-sans-serif;
   src: url(../fonts/little-lord-font-leroy/little-lord-font-leroy.ttf);
-}
+} */
 
 /* Global styles
 -------------------------*/
 /* apply a natural box layout model to all elements, but allowing components to change */
+
+/* This style is not working - need to figure out why */
+table th td {
+  border: 1px solid black;
+}
+
 html {
+  border: 1px solid black;
   box-sizing: border-box;
 }
 *, *:before, *:after {
   box-sizing: inherit;
 }
 body {
-  font-family: 'Lora', serif;
+  font-family: sans-serif;
   margin: 0;
 }
 h1, h2 {
-  font-family: 'Abril Fatface', cursive;
+  font-family: sans-serif;
   font-weight: 400;
 }
 h1 {
@@ -68,13 +75,13 @@ a:hover {
 /* Header and Footer styles
 -------------------------*/
 header, footer {
-  background: #498C8A;
-  color: #42F2F7;
+  background: pink;
+  color: yellow;
 }
 /* header */
-.profile-img {
+/* .profile-img { */
   /* width: 300px; */
-  border-radius: 50%;
+  /* border-radius: 50%; */
   /* float: left; */
   /* margin-right: 30px; */
 }
@@ -83,18 +90,18 @@ header, footer {
 /* header {
   text-align: center;
 } */
-header h1, header h2 {
-  color: white;
-  margin: 0;
-}
+/* header h1, header h2 { */
+  /* color: white; */
+  /* margin: 0; */
+/* } */
 /* footer */
-footer {
-  text-align: center;
-}
-.contact-info a {
-  padding: 10px;
-  display: inline-block;
-}
+/* footer { */
+  /* text-align: center; */
+/* } */
+/* .contact-info a { */
+  /* padding: 10px; */
+  /* display: inline-block; */
+/* } */
 
 /* Work Experience
 -------------------------*/

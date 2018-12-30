@@ -16,18 +16,7 @@ if(!isset($page_title)) { $page_title = 'Cat Site'; }
 
   <!-- need to look up what media all is -->
   <!-- link to stylesheet -->
-  <link rel="stylesheet" media="all" href= "<?php echo url_for('stylesheets/styles.css'); ?>" />
-
-  <!-- temp styling remove -->
-  <style>
-  header {
-    background: light-blue;
-  }
-  /* table / th - table header / td - table data */
-  html, table, th, td {
-    border: 1px solid black;
-  }
-  </style>
+  <link rel="stylesheet" media="all" href="<?php echo url_for('stylesheets/styles.css'); ?>">
 
   <!-- get page title from page -->
   <title>CatSite - <?php echo htmlspecialchars($page_title); ?></title>

@@ -1,6 +1,7 @@
 <!-- loads code in functions.php and other code libraries -->
-
 <?php
+//turn on output buffering first
+ob_start();
 
 // Assign file paths to PHP constants
 // __FILE__ returns the current path to this file
@@ -21,8 +22,13 @@ $public_end = strpos($_SERVER['SCRIPT_NAME'], '/public') + 7;
 $doc_root = substr($_SERVER['SCRIPT_NAME'], 0, $public_end);
 define("WWW_ROOT", $doc_root);
 
-
 // load functions once
 require_once('functions.php');
+
+//load database connection functions
+require_once('database.php');
+
+//variable to make queries to db with
+$db = db_connect();
 
 ?>

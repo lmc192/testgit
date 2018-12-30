@@ -21,9 +21,10 @@ function doSomething() {
   echo "Yo What's Up I'm totally testing PHP";
 }
 
-// error handling functions
+// error handling functions - TESTING FOR NOW
 function error_404(){
   header($_SERVER["SERVER_PROTOCOL"] . " 404 Oh Noes! No Kitties Here!");
+  echo "BOO BAD TIMES";
   // send and quit
   exit();
 }
@@ -33,4 +34,18 @@ function error_500() {
   // send and quit
   exit();
 }
+
+//Redirect function - returns location based on input
+function redirect_to($location) {
+  header("Location: " . $location);
+}
+
+//Checks if a post or get request was made.  Used for forms to check data is sent or requsested.
+function is_post_request() {
+  return $_SERVER['REQUEST_METHOD'] == 'POST';
+}
+function is_get_request() {
+  return $_SERVER['REQUEST_METHOD'] == 'GET';
+}
+
 ?>

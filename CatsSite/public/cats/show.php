@@ -14,7 +14,7 @@
 <!-- get header -->
 <?php include(SHARED_PATH . '/header.php'); ?>
 
-<h1><?php echo "this is the show page"; ?></h1>
+<h1><?php echo "Show Cat"; ?></h1>
 
 <!-- Go back to main list link - redundant cos I have main page link? -->
 <a href="<?php echo url_for('/index.php');?>">&laquo; Back to List</a>
@@ -23,6 +23,7 @@
 <h2><?php echo "Here is the Cat ID: "; echo htmlspecialchars($id); ?></h2>
 
 <!-- use urlencode() to handle special characters in parameters -->
+<!-- testing -->
 <a href="show.php?name=<?php echo urlencode('John Doe'); ?>">Link</a><br />
 <a href="show.php?company=<?php echo urlencode('Widgets&More'); ?>">Link</a><br />
 <a href="show.php?query=<?php echo urlencode('!#*?'); ?>">Link</a><br />

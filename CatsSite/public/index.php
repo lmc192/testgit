@@ -1,4 +1,11 @@
-<!-- load all functions - Need full file path here as path definitions are contained within start.php -->
+<!-- **HOME PAGE**
+			Introduction
+			Header
+			Content need to assign classes and div up page for CSS
+			Data table
+			Footer -->
+
+<!-- load all functions and database connection variable - Need full file path here as path definitions are contained within start.php -->
 <?php require_once('../private/start.php'); ?>
 
 <!-- Set Page Title -->
@@ -11,7 +18,6 @@
 <?php //writeMsg(); doSomething(); ?>
 <!-- <a href="test.php">Test Page</a> -->
 
-
 <!-- test PHP array -->
 <?php
 $cat_table = [
@@ -23,7 +29,7 @@ $cat_table = [
 ?>
 
 <!-- TABLE -->
-<table style ="width:70%">
+<table>
 	<tr>
 		<th>ID</th>
 		<th>Position</th>
@@ -44,31 +50,38 @@ $cat_table = [
 			<!-- no need for htmlspecialchars here as checking for 1 and conrtolling the response here with php -->
 			<td><?php echo $cat_table['visible'] == 1 ? 'true' : 'false'; ?></td>
 			<td><?php echo htmlspecialchars($cat_table['cat_name']); ?></td>
+
+			<!-- VIEW -->
 			<!-- takes you to the show page for the relevant record, passes ID onto the show page -->
 			<!-- use htmlspecialchars to prevent XSS. DO THIS ANYTIME DYNAMIC DATA IS USED! -->
 			<!-- use urlencode() to handle special characters in parameters -->
 			<td><a class="action" href="<?php echo url_for('cats/show.php?id=' . htmlspecialchars(urlencode($cat_table['id']))); ?>">View</a></td>
-			<td><a class="action" href="">Edit</a></td>
+
+			<!-- EDIT -->
+			<!-- takes you to the edit page for the relevant record, passes ID onto the show page -->
+			<td><a class="action" href="<?php echo url_for('cats/edit.php?id=' . htmlspecialchars(urlencode($cat_table['id']))); ?>">Edit</a></td>
 			<td><a class="action" href="">Delete</a></td>
+
 		</tr>
 	<?php } ?>
 </table><br>
 
-<!-- Form -->
-<!--PHP CODE TO GO IN HERE TO SEND DATA TO DATABASE-->
-<!-- <form>
-<fieldset>
-<legend>Add your own cat here!</legend><br>
-Name:<br>
-<input type="text" name="name"><br><br>
-Age:<br>
-<input type="text" name="age"><br><br>
-Breed:<br>
-<input type="text" name="breed"><br><br>
-Gender:<br>
-<input type="text" name="gender"><br><br>
-<input type="submit" value="Submit"><br>
-</fieldset>
+<a href="<?php echo url_for('cats/new.php'); ?>">Create New Cat Page...</a><br>
+
+<!-- Submit New Cat Form, Moved to new.php? -->
+<!-- <form action="" method="post">
+	<fieldset>
+		<legend>Add your own cat here!</legend><br>
+		Name:<br>
+		<input type="text" name="name" value=""><br><br>
+		Age:<br>
+		<input type="text" name="age" value=""><br><br>
+		Breed:<br>
+		<input type="text" name="breed" value=""><br><br>
+		Gender:<br>
+		<input type="text" name="gender" value=""><br><br>
+		<input type="submit" value="Submit"><br>
+	</fieldset>
 </form> -->
 
 

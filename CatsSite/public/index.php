@@ -1,9 +1,9 @@
 <!-- **HOME PAGE**
-			Introduction
-			Header
-			Content need to assign classes and div up page for CSS
-			Data table
-			Footer -->
+Introduction
+Header
+Content need to assign classes and div up page for CSS
+Data table
+Footer -->
 
 <!-- load all functions and database connection variable - Need full file path here as path definitions are contained within start.php -->
 <?php require_once('../private/start.php'); ?>
@@ -14,18 +14,12 @@
 <!-- get header -->
 <?php include(SHARED_PATH . '/header.php'); ?>
 
-<!-- TEST FUNCTIONS.PHP  -->
-<?php //writeMsg(); doSomething(); ?>
-<!-- <a href="test.php">Test Page</a> -->
-
 <!-- test PHP array -->
 <?php
-$cat_table = [
-	['id' => '1', 'position' => '1', 'visible' => '1', 'cat_name' => 'Bob'],
-	['id' => '2', 'position' => '2', 'visible' => '1', 'cat_name' => 'Fluffy'],
-	['id' => '3', 'position' => '3', 'visible' => '1', 'cat_name' => 'Gigi'],
-	['id' => '4', 'position' => '4', 'visible' => '1', 'cat_name' => 'Lucy'],
-];
+
+//Get data for all cats table
+$cat_set = find_all_cats();
+
 ?>
 
 <!-- TABLE -->
@@ -40,10 +34,10 @@ $cat_table = [
 		<th>&nbsp;</th>
 	</tr>
 
-	<!-- loop through array to display the data in test PHP array -->
+	<!-- while loop through cat table to display the datay -->
 	<!-- use htmlspecialchars to prevent XSS. DO THIS ANYTIME DYNAMIC DATA IS USED! -->
 	<!-- use urlencode() to handle special characters in parameters -->
-	<?php foreach($cat_table as $cat_table) { ?>
+	<?php while($cat_table = mysqli_fetch_assoc($cat_set)) { ?>
 		<tr>
 			<td><?php echo htmlspecialchars($cat_table['id']); ?></td>
 			<td><?php echo htmlspecialchars($cat_table['position']); ?></td>
@@ -66,22 +60,26 @@ $cat_table = [
 	<?php } ?>
 </table><br>
 
+<?php
+mysqli_free_result($cat_set);
+?>
+
 <a href="<?php echo url_for('cats/new.php'); ?>">Create New Cat Page...</a><br>
 
 <!-- Submit New Cat Form, Moved to new.php? -->
 <!-- <form action="" method="post">
-	<fieldset>
-		<legend>Add your own cat here!</legend><br>
-		Name:<br>
-		<input type="text" name="name" value=""><br><br>
-		Age:<br>
-		<input type="text" name="age" value=""><br><br>
-		Breed:<br>
-		<input type="text" name="breed" value=""><br><br>
-		Gender:<br>
-		<input type="text" name="gender" value=""><br><br>
-		<input type="submit" value="Submit"><br>
-	</fieldset>
+<fieldset>
+<legend>Add your own cat here!</legend><br>
+Name:<br>
+<input type="text" name="name" value=""><br><br>
+Age:<br>
+<input type="text" name="age" value=""><br><br>
+Breed:<br>
+<input type="text" name="breed" value=""><br><br>
+Gender:<br>
+<input type="text" name="gender" value=""><br><br>
+<input type="submit" value="Submit"><br>
+</fieldset>
 </form> -->
 
 

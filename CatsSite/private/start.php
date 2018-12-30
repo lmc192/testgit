@@ -22,11 +22,14 @@ $public_end = strpos($_SERVER['SCRIPT_NAME'], '/public') + 7;
 $doc_root = substr($_SERVER['SCRIPT_NAME'], 0, $public_end);
 define("WWW_ROOT", $doc_root);
 
-// load functions once
+// load functions file
 require_once('functions.php');
 
-//load database connection functions
+//load database connection functions file
 require_once('database.php');
+
+//Load SQL query functions file
+require_once('query_functions.php');
 
 //variable to make queries to db with
 $db = db_connect();

@@ -60,6 +60,7 @@ $cat_set = find_all_cats();
 	<?php } ?>
 </table><br>
 
+<!-- free memory -->
 <?php
 mysqli_free_result($cat_set);
 ?>

@@ -5,8 +5,12 @@
 
 <!-- gets value and assign to local variable -->
 <!-- default value is currently set to 1 -->
-<?php  $id = $_GET['id'] ?? '1'; // PHP > v7.0 ?>
-<?php // $id = isset($_GET['id']) ? $_GET['id'] : '1'; ?>
+<?php  $id = $_GET['id'] ?? '1'; // PHP > v7.0
+
+//get array and assign to variable to use in the page and display details
+$cat = find_cat_by_id($id);
+
+?>
 
 <!-- Set Page Title -->
 <?php $page_title = 'Cat Page'; ?>
@@ -21,6 +25,23 @@
 
 <!-- use htmlspecialchars to prevent XSS. DO THIS ANYTIME DYNAMIC DATA IS USED! -->
 <h2><?php echo "Here is the Cat ID: "; echo htmlspecialchars($id); ?></h2>
+
+<!-- think about where to add divs and classes for css -->
+
+<h1>Cat: <?php echo htmlspecialchars($cat['cat_name']); ?></h1>
+<dl>
+  <dt>Cat Name</dt>
+  <dd><?php echo htmlspecialchars($cat['cat_name']); ?></dd>
+</dl>
+<dl>
+  <dt>Position</dt>
+  <dd><?php echo htmlspecialchars($cat['position']); ?></dd>
+</dl>
+<dl>
+  <dt>Cat Name</dt>
+  <dd><?php echo $cat['visible'] == '1' ? 'true' : 'false'; ?></dd>
+</dl>
+
 
 <!-- use urlencode() to handle special characters in parameters -->
 <!-- testing -->

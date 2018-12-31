@@ -16,7 +16,13 @@ if(is_post_request()) {
   echo "Cat name: " . $cat_name . "<br>";
   echo "Position: " . $position . "<br>";
   echo "Visible: " . $visible . "<br>";
-// if not post request, redirect back to form
+
+  //check for true value then redirect with new value.
+  $result = insert_cat($cat_name, $position, $visible);
+  $new_id = mysqli_insert_id($db);
+  redirect_to(url_for('cats/show.php?id=' . $new_id));
+
+  // if not post request, redirect back to form
 } else {
   redirect_to(url_for('/cats/new.php'));
 }

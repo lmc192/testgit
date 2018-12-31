@@ -40,7 +40,7 @@ function redirect_to($location) {
   header("Location: " . $location);
 }
 
-//Checks if a post or get request was made.  Used for forms to check data is sent or requsested.
+//Checks if a POST or GET request was made.  Used for forms to check data is sent or requsested.
 function is_post_request() {
   return $_SERVER['REQUEST_METHOD'] == 'POST';
 }

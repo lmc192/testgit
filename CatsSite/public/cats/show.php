@@ -38,7 +38,7 @@ $cat = find_cat_by_id($id);
   <dd><?php echo htmlspecialchars($cat['position']); ?></dd>
 </dl>
 <dl>
-  <dt>Cat Name</dt>
+  <dt>Visible</dt>
   <dd><?php echo $cat['visible'] == '1' ? 'true' : 'false'; ?></dd>
 </dl>
 

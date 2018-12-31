@@ -27,19 +27,7 @@ function find_cat_by_id($id) {
   return $cat;
 }
 
-// COPIED FROM HIS ONE FOR REFERENCE
-// function find_subject_by_id($id) {
-//   global $db;
-//
-//   $sql = "SELECT * FROM subjects ";
-//   $sql .= "WHERE id='" . $id . "'";
-//   $result = mysqli_query($db, $sql);
-//   confirm_result_set($result);
-//   $subject = mysqli_fetch_assoc($result);
-//   mysqli_free_result($result);
-//   return $subject; // returns an assoc. array
-// }
-
+// Function to insert new cat into DB
 function insert_cat($cat_name, $position, $visible) {
   //get global db variable to access it
   global $db;
@@ -64,4 +52,41 @@ function insert_cat($cat_name, $position, $visible) {
     exit;
   }
 }
+
+// Function to update exiting cat record
+function update_cat($cat) {
+  //get global db variable to access it
+  global $db;
+  //SQL INSERT query.
+  $sql = "UPDATE cats SET ";
+  $sql .= "cat_name= ' " . $cat['cat_name'] . " ', ";
+  $sql .= "position= ' " . $cat['position'] . " ', ";
+  $sql .= "visible= ' " . $cat['visible'] . " ' ";
+  $sql .= "WHERE id= ' " . $cat['id'] . " ' ";
+  $sql .= "LIMIT 1";
+
+  //SQL UPDATE returns true / false
+  $result = mysqli_query($db, $sql);
+
+  if($result) {
+    //UPDATE sucessful - go to show page and display updated data
+    return true;
+  } else {
+    //UPDATE failes
+    echo mysql_error($db);
+    db_disconnect($db);
+    exit;
+  }
+
+}
+
+// Function to count number of cats in the table
+function cat_count() {
+  global $db;
+  $cat_set = find_all_cats();
+  $result = mysqli_num_rows($cat_set);
+  mysqli_free_result($cat_set);
+  return $result;
+}
+
 ?>

@@ -7,46 +7,33 @@
 if (!isset($_GET['id'])) {
   redirect_to(url_for('/index.php'));
 }
-// declare variables
+// declare ID variable, GET from previous POST (sent in from index.php)
 $id = $_GET['id'];
-$cat_name = '';
-$position = '';
-$visible = '';
 
-$test = $_GET['test'] ?? '';
+// Handles new cat values sent in on form from new.php
 
-// testing error functions
-if($test == '404') {
-  error_404();
-} elseif($test == '500') {
-  error_500();
-}
-// testredirect
-elseif($test == 'redirect') {
-  header("Location: ". url_for('index.php'));
-  exit();
-}
-
-
-// Handles new cat values sent in from new.php
-
-//Check post request is made here.
+//Check POST request is made here.
 if(is_post_request()) {
-  //Accesses Post Super Globals and asks for values sent in, then assigns these values to local variables.
-  //Read values that have been submitted to this page by a form
-  $cat_name = $_POST['cat_name'] ?? '';
-  $position = $_POST['position'] ?? '';
-  $visible = $_POST['visible'] ?? '';
+  //Read values that have been submitted to this page by the form, put then in array
+  $cat = [];
+  $cat['id'] = $id;
+  $cat['cat_name'] = $_POST['cat_name'] ?? '';
+  $cat['position'] = $_POST['position'] ?? '';
+  $cat['visible'] = $_POST['visible'] ?? '';
 
-  //Displays values sent in
-  echo "Form parameters<br>";
-  echo "Cat name: " . $cat_name . "<br>";
-  echo "Position: " . $position . "<br>";
-  echo "Visible: " . $visible . "<br>";
-// if not post request, just show the form again
+  $result = update_cat($cat);
+  redirect_to(url_for('cats/show.php?id=' . $id));
+
+  // if not POST request, just show the form again
 } else {
+  //get array and assign to variable to use in the page and display details
+  $cat = find_cat_by_id($id);
 
+  $cat_count = cat_count();
+  //$cat_number = mysqli_fetch_assoc($cat_count);
 }
+
+
 ?>
 
 <!-- Set Page Title -->
@@ -59,27 +46,43 @@ if(is_post_request()) {
 <a href="<?php echo url_for('/index.php');?>">&laquo; Back to List</a>
 
 <h1>Edit Cat</h1>
+<h1>Cat Count: <?php echo $cat_count; ?></h1>
 
-<!-- Edit Cat Form -->
+<!-- **EDIT CAT FORM** -->
 <form action="<?php echo url_for('cats/edit.php?id=' . htmlspecialchars(urlencode($id)));?>" method="post">
+
+  <!-- CAT NAME -->
   <dl>
     <dt>Cat Name</dt>
     <!-- displays the cat name which has been submitted on the form -->
-    <dd><input type="text" name="cat_name" value="<?php echo htmlspecialchars($cat_name); ?>"></dd>
+    <dd><input type="text" name="cat_name" value="<?php echo htmlspecialchars($cat['cat_name']); ?>"></dd>
   </dl>
+
+  <!-- POSITION -->
   <dl>
     <dt>Position</dt>
     <dd>
       <select name="position">
-        <option value="1"<?php if ($position == "1") {echo " selected"; } ?>>1</option>
+        <!-- create a loop to display each 'available' position in list (using a count of cats in the table) -->
+        <?php
+        for($i=1; $i <= $cat_cout; $i++) {
+          // echo "option value\"{$i}\"";
+          // if($cat["position"] == $i) {
+          //   echo " selected";
+          // }
+          echo ">{$i}</option>";
+        }
+        ?>
       </select>
     </dd>
   </dl>
+
+  <!-- VISIBLE -->
   <dl>
     <dt>Visible</dt>
     <dd>
       <input type="hidden" name="visible" value="0">
-      <input type="checkbox" name="visible" value="1" <?php if ($visible == "1") {echo " checked"; } ?>>
+      <input type="checkbox" name="visible" value="1" <?php if ($cat['visible'] == "1") {echo " checked"; } ?>>
     </dd>
   </dl>
   <dl>

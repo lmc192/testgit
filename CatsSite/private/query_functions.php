@@ -36,8 +36,7 @@ function validate_cat($cat) {
   if(is_blank($cat['cat_name'])) {
     //add item to the array
     $errors[] = "Name cannot be blank. All kitties need a name";
-  }
-  if(!has_length($cat['cat_name'], ['min' => 2, 'max' => 255])) {
+  } elseif(!has_length($cat['cat_name'], ['min' => 2, 'max' => 255])) {
     $errors[] = "Name must be between 2 and 255 characters length";
   }
 
@@ -108,7 +107,7 @@ function update_cat($cat) {
   //http://php.net/manual/en/function.empty.php - checks if variable is empty
   if(!empty($validation_errors)) {
     //if there are errors (data in the array) then return those errors and do not execute SQL code
-    return $errors;
+    return $validation_errors;
   }
   // else go ahead and insert
   //SQL INSERT query.

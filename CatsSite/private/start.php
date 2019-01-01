@@ -36,5 +36,7 @@ require_once('validation_functions.php');
 
 //variable to make queries to db with
 $db = db_connect();
+//variable array to display any validation errors
+$errors = [];
 
 ?>

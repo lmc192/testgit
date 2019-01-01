@@ -20,6 +20,8 @@ if(is_post_request()) {
 
   //check for true value then redirect with new value.
   $result = insert_cat($cat);
+
+  //http://php.net/manual/en/mysqli.insert-id.php - Returns the auto generated id used in the latest query
   $new_id = mysqli_insert_id($db);
   redirect_to(url_for('cats/show.php?id=' . $new_id));
 

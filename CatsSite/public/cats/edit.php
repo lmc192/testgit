@@ -29,7 +29,7 @@ if(is_post_request()) {
       redirect_to(url_for('cats/show.php?id=' . $id));
   } else {
     $errors = $result;
-    var_dump($errors);
+    //var_dump($errors);
   }
 
 
@@ -37,14 +37,13 @@ if(is_post_request()) {
 } else {
   //get array and assign to variable to use in the page and display details
   $cat = find_cat_by_id($id);
-
-  $cat_count = cat_count();
-
 }
 
+$cat_count = cat_count();
 
 ?>
 
+<!-- PAGE CONTENT -->
 <!-- Set Page Title -->
 <?php $page_title = 'Edit Cat'; ?>
 
@@ -56,6 +55,8 @@ if(is_post_request()) {
 
 <h1>Edit Cat</h1>
 <h1>Cat Count: <?php echo $cat_count; ?></h1>
+
+<?php echo display_validation_errors($errors); ?>
 
 <!-- **EDIT CAT FORM** -->
 <form action="<?php echo url_for('cats/edit.php?id=' . htmlspecialchars(urlencode($id)));?>" method="post">

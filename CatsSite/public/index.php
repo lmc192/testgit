@@ -54,7 +54,9 @@ $cat_set = find_all_cats();
 			<!-- EDIT -->
 			<!-- takes you to the edit page for the relevant record, passes ID onto the show page -->
 			<td><a class="action" href="<?php echo url_for('cats/edit.php?id=' . htmlspecialchars(urlencode($cat_table['id']))); ?>">Edit</a></td>
-			<td><a class="action" href="">Delete</a></td>
+
+			<!-- DELETE -->
+			<td><a class="action" href="<?php echo url_for('cats/delete.php?id=' . htmlspecialchars(urlencode($cat_table['id']))); ?>">Delete</a></td>
 
 		</tr>
 	<?php } ?>

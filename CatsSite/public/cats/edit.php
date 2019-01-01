@@ -30,7 +30,7 @@ if(is_post_request()) {
   $cat = find_cat_by_id($id);
 
   $cat_count = cat_count();
-  //$cat_number = mysqli_fetch_assoc($cat_count);
+
 }
 
 
@@ -65,11 +65,11 @@ if(is_post_request()) {
       <select name="position">
         <!-- create a loop to display each 'available' position in list (using a count of cats in the table) -->
         <?php
-        for($i=1; $i <= $cat_cout; $i++) {
-          // echo "option value\"{$i}\"";
-          // if($cat["position"] == $i) {
-          //   echo " selected";
-          // }
+        for($i=1; $i <= $cat_count; $i++) {
+          echo "<option value=\"{$i}\"";
+          if($cat["position"] == $i) {
+            echo " selected";
+          }
           echo ">{$i}</option>";
         }
         ?>

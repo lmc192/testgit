@@ -89,4 +89,24 @@ function cat_count() {
   return $result;
 }
 
+function delete_cat($id) {
+  global $db;
+  //delete
+  $sql = "DELETE FROM cats ";
+  $sql .= "WHERE id= ' " . $id . " ' ";
+  $sql .= "LIMIT 1";
+
+  $result = mysqli_query($db, $sql);
+
+  //For DELETE query, result is true / false
+  if($result) {
+    return true;
+  } else {
+    //UPDATE failes
+    echo mysql_error($db);
+    db_disconnect($db);
+    exit;
+  }
+}
+
 ?>

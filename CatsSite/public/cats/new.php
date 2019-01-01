@@ -1,6 +1,12 @@
 <!-- load all functions - Need full file path here as path definitions are contained within start.php -->
 <?php require_once('../../private/start.php');
 
+//Get local variables
+$cat_count = cat_count() + 1;
+
+$cat = [];
+$cat["position"] = $cat_count;
+
 ?>
 
 <!-- Set Page Title -->
@@ -21,15 +27,26 @@
     <dt>Cat Name</dt>
     <dd><input type="text" name="cat_name" value=""></dd>
   </dl>
+
+  <!-- POSITION -->
   <dl>
     <dt>Position</dt>
     <dd>
       <select name="position">
-        <option value="1">1</option>
+        <!-- create a loop to display each 'available' position in list (using a count of cats in the table) -->
+        <?php
+        for($i=1; $i <= $cat_count; $i++) {
+          echo "<option value=\"{$i}\"";
+          if($cat["position"] == $i) {
+            echo " selected";
+          }
+          echo ">{$i}</option>";
+        }
+        ?>
       </select>
     </dd>
   </dl>
-  <dl>
+
     <dt>Visible</dt>
     <dd>
       <input type="hidden" name="visible" value="0">

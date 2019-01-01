@@ -25,15 +25,15 @@ if(!isset($page_title)) { $page_title = 'Cat Site'; }
 <body>
   <header>
     <!-- Header -->
-    <!-- <h1><img src="images/header_image.jpg" alt="ginger">CATS</h1> -->
-  </header>
-  <!--<h1><img src="images/header_image.jpg" alt="ginger">CATS</h1>-->
-  <p>Welcome to Cats Site!  Where you can add your cat to our database</p>
-  <a href="<?php echo url_for('stylesheets/testcss.html'); ?>">CSS Test Page</a>
+    <!-- <h1><img src="images/header_image.jpg" alt="ginger"></h1> -->
+    <!--<h1><img src="images/header_image.jpg" alt="ginger">CATS</h1>-->
+    <p>Welcome to Cats Site!  Where you can add your cat to our database</p>
+    <a href="<?php echo url_for('stylesheets/testcss.html'); ?>">CSS Test Page</a>
 
-  <!-- consider having a navigation menu here? -->
-  <navigation>
-    <ul>
-      <li><a href="<?php echo url_for('/index.php'); ?>">Main Page</a></li>
-    </ul>
-  </navigation>
+    <!-- consider having a navigation menu here? -->
+    <navigation>
+      <ul>
+        <li><a href="<?php echo url_for('/index.php'); ?>">Main Page</a></li>
+      </ul>
+    </navigation>
+  </header>

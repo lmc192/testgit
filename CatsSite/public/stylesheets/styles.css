@@ -1,17 +1,17 @@
 /*Colour Palette
-#42F2F7 - light turquoise
-#46ACC2 - dark turquoise
-#498C8A - darker turquoise
-#4B6858 - dark green
-#4D4730 - dark brown
+#672256 - Dark Pink / Light Purple
+#CF6EC8 - Bright Pink
+#37A49D - Turquoise
+#FCFBF7 - Cream
+#32112E - Dark Purple
 */
 
 /* Font File
 -------------------------*/
-/* @font-face {
-  font-family: 'little-lord-font-leroy', sans-sans-serif;
+@font-face {
+  font-family: 'little-lord-font-leroy';
   src: url(../fonts/little-lord-font-leroy/little-lord-font-leroy.ttf);
-} */
+}
 
 /* Global styles
 -------------------------*/
@@ -30,11 +30,11 @@ html {
   box-sizing: inherit;
 }
 body {
-  font-family: sans-serif;
+  font-family: 'little-lord-font-leroy', sans-serif;
   margin: 0;
 }
 h1, h2 {
-  font-family: sans-serif;
+  font-family: 'little-lord-font-leroy', sans-serif;
   font-weight: 400;
 }
 h1 {
@@ -45,7 +45,7 @@ h2 {
   margin-top: 0;
 }
 a {
-  color: #4B6858;
+  color: #37A49D;
 }
 a:hover {
   /*removes default underline when hover over element*/
@@ -75,8 +75,8 @@ a:hover {
 /* Header and Footer styles
 -------------------------*/
 header, footer {
-  background: pink;
-  color: yellow;
+  background: #32112E;
+  color: #FCFBF7;
 }
 /* header */
 /* .profile-img { */

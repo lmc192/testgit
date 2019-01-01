@@ -5,11 +5,12 @@
 
 //Check post request is made here.
 if(is_post_request()) {
-  //Accesses Post Super Globals and asks for values sent in, then assigns these values to local variables.
+  //Accesses Post Super Globals and asks for values sent in, then assigns these values to local variable array $cat
   //Read values that have been submitted to this page by a form
-  $cat_name = $_POST['cat_name'] ?? '';
-  $position = $_POST['position'] ?? '';
-  $visible = $_POST['visible'] ?? '';
+  $cat = [];
+  $cat['cat_name'] = $_POST['cat_name'] ?? '';
+  $cat['position'] = $_POST['position'] ?? '';
+  $cat['visible'] = $_POST['visible'] ?? '';
 
   //Displays values sent in
   echo "Form parameters<br>";
@@ -18,7 +19,7 @@ if(is_post_request()) {
   echo "Visible: " . $visible . "<br>";
 
   //check for true value then redirect with new value.
-  $result = insert_cat($cat_name, $position, $visible);
+  $result = insert_cat($cat);
   $new_id = mysqli_insert_id($db);
   redirect_to(url_for('cats/show.php?id=' . $new_id));
 

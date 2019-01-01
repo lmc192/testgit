@@ -31,6 +31,9 @@ require_once('database.php');
 //Load SQL query functions file
 require_once('query_functions.php');
 
+//Load validations functions file
+require_once('validation_functions.php');
+
 //variable to make queries to db with
 $db = db_connect();
 

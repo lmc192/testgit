@@ -10,7 +10,6 @@ function url_for($script_path) {
   return WWW_ROOT . $script_path;
 }
 
-
 // test
 function writeMsg() {
     echo "Hello world!";
@@ -35,7 +34,7 @@ function error_500() {
   exit();
 }
 
-//Redirect function - returns location based on input
+//Redirect function - returns location header to server to instantly redirect the page
 function redirect_to($location) {
   header("Location: " . $location);
 }

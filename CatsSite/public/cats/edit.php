@@ -17,12 +17,21 @@ if(is_post_request()) {
   //Read values that have been submitted to this page by the form, put then in array
   $cat = [];
   $cat['id'] = $id;
+
+  //define default values
   $cat['cat_name'] = $_POST['cat_name'] ?? '';
   $cat['position'] = $_POST['position'] ?? '';
   $cat['visible'] = $_POST['visible'] ?? '';
 
+  //validations are contained within the update_cat() function so they are performed here also (before data is sent to DB)
   $result = update_cat($cat);
-  redirect_to(url_for('cats/show.php?id=' . $id));
+  if($result === true) {
+      redirect_to(url_for('cats/show.php?id=' . $id));
+  } else {
+    $errors = $result;
+    var_dump($errors);
+  }
+
 
   // if not POST request, just show the form again
 } else {

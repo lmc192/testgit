@@ -17,7 +17,11 @@ function find_all_cats() {
 function find_cat_by_id($id) {
   //get global db variable to access it
   global $db;
-  $sql = "SELECT * FROM cats WHERE id= '" . $id . " ' "; // SELECT * FROM cats WHERE id = '$id';
+  $sql = "SELECT * FROM cats ";
+  //http://php.net/manual/en/mysqli.real-escape-string.php - Escapes special characters in a string for use in an SQL statement, taking into account the current charset of the connection
+  //Helps prevent SQLi
+  $sql .= "WHERE id= ' " . mysqli_real_escape_string($db, $id) . " ' "; // SELECT * FROM cats WHERE id = '$id';
+  //echo $sql;
   $result = mysqli_query($db, $sql);
   confirm_result_set($result);
   $cat = mysqli_fetch_assoc($result);
@@ -70,16 +74,16 @@ function insert_cat($cat) {
   //http://php.net/manual/en/function.empty.php - checks if variable is empty
   if(!empty($validation_errors)) {
     //if there are errors (data in the array) then return those errors and do not execute SQL code
-    return $errors;
+    return $validation_errors;
   }
 
   // else go ahead and update
   //SQL INSERT query.  Divided up so values can be used later.  include single quote around variables for security
   $sql = "INSERT INTO cats (cat_name, position, visible)";
   $sql .= "VALUES (";
-  $sql .= " ' " . $cat_name . " ', ";
-  $sql .= " ' " . $position . " ', ";
-  $sql .= " ' " . $visible . " ' ";
+  $sql .= " ' " . mysqli_real_escape_string($db, $cat['cat_name']) . " ', ";
+  $sql .= " ' " . mysqli_real_escape_string($db, $cat['position']) . " ', ";
+  $sql .= " ' " . mysqli_real_escape_string($db, $cat['visible']) . " ' ";
   $sql .= ")";
 
   //SQL INSERT returns true / false
@@ -112,10 +116,10 @@ function update_cat($cat) {
   // else go ahead and insert
   //SQL INSERT query.
   $sql = "UPDATE cats SET ";
-  $sql .= "cat_name= ' " . $cat['cat_name'] . " ', ";
-  $sql .= "position= ' " . $cat['position'] . " ', ";
-  $sql .= "visible= ' " . $cat['visible'] . " ' ";
-  $sql .= "WHERE id= ' " . $cat['id'] . " ' ";
+  $sql .= "cat_name= ' " . mysqli_real_escape_string($db, $cat['cat_name']) . " ', ";
+  $sql .= "position= ' " . mysqli_real_escape_string($db, $cat['position']) . " ', ";
+  $sql .= "visible= ' " . mysqli_real_escape_string($db, $cat['visible']) . " ' ";
+  $sql .= "WHERE id= ' " . mysqli_real_escape_string($db, $cat['id']) . " ' ";
   $sql .= "LIMIT 1";
 
   //ASK MARK OR PAUL ABOUT THIS WHAT'S THE DIFFENRECE????
@@ -148,7 +152,7 @@ function delete_cat($id) {
   global $db;
   //delete
   $sql = "DELETE FROM cats ";
-  $sql .= "WHERE id= ' " . $id . " ' ";
+  $sql .= "WHERE id= ' " . mysqli_real_escape_string($db, $id) . " ' ";
   $sql .= "LIMIT 1";
 
   $result = mysqli_query($db, $sql);

@@ -1,6 +1,30 @@
 <!-- load all functions - Need full file path here as path definitions are contained within start.php -->
 <?php require_once('../../private/start.php');
 
+//Check post request is made here.
+if(is_post_request()) {
+  //Accesses Post Super Globals and asks for values sent in, then assigns these values to local variable array $cat
+  //Read values that have been submitted to this page by a form
+  $cat = [];
+  $cat['cat_name'] = $_POST['cat_name'] ?? '';
+  $cat['position'] = $_POST['position'] ?? '';
+  $cat['visible'] = $_POST['visible'] ?? '';
+
+  //check for true value then redirect with new value.
+  $result = insert_cat($cat);
+  if($result === true) {
+    //http://php.net/manual/en/mysqli.insert-id.php - Returns the auto generated id used in the latest query
+    $new_id = mysqli_insert_id($db);
+    redirect_to(url_for('cats/show.php?id=' . $new_id));
+  } else {
+    $errors = $result;
+  }
+
+  // if not post request, redirect back to form
+} else {
+  //display the blank form
+}
+
 //Get local variables
 $cat_count = cat_count() + 1;
 
@@ -9,6 +33,7 @@ $cat["position"] = $cat_count;
 
 ?>
 
+<!-- PAGE CONTENT -->
 <!-- Set Page Title -->
 <?php $page_title = 'New Cat'; ?>
 
@@ -20,9 +45,11 @@ $cat["position"] = $cat_count;
 
 <h1>Create Cat</h1>
 
+<?php echo display_validation_errors($errors); ?>
+
 <!-- Submit New Cat Form -->
 <!-- sends form data to create.php -->
-<form action="<?php echo url_for('/cats/create.php'); ?>" method="post">
+<form action="<?php echo url_for('/cats/new.php'); ?>" method="post">
   <dl>
     <dt>Cat Name</dt>
     <dd><input type="text" name="cat_name" value=""></dd>
@@ -47,18 +74,18 @@ $cat["position"] = $cat_count;
     </dd>
   </dl>
 
-    <dt>Visible</dt>
-    <dd>
-      <input type="hidden" name="visible" value="0">
-      <input type="checkbox" name="visible" value="1">
-    </dd>
-  </dl>
-  <dl>
-    <dt></dt>
-    <dd>
-      <input type="submit" value="Create Cat">
-    </dd>
-  </dl>
+  <dt>Visible</dt>
+  <dd>
+    <input type="hidden" name="visible" value="0">
+    <input type="checkbox" name="visible" value="1">
+  </dd>
+</dl>
+<dl>
+  <dt></dt>
+  <dd>
+    <input type="submit" value="Create Cat">
+  </dd>
+</dl>
 </form>
 
 <!-- get footer -->

@@ -31,9 +31,7 @@ if(is_post_request()) {
     $errors = $result;
     //var_dump($errors);
   }
-
-
-  // if not POST request, just show the form again
+// if not POST request, just show the form again
 } else {
   //get array and assign to variable to use in the page and display details
   $cat = find_cat_by_id($id);

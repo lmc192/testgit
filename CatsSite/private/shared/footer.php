@@ -1,7 +1,7 @@
 <!-- FOOTER PAGE - THIS WILL BE LOADED IN EVERY PAGE ON THE SITE FOR CONSISTANCY -->
 
 		<!-- rickroll link -->
-		<a href="rickroll.html">Don't Click Me!</a>
+		<a href="<?php echo url_for('/rickroll.html') ?>">Don't Click Me!</a>
 
 		<footer>
 			<!-- footer -->

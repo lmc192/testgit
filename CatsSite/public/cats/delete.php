@@ -17,7 +17,6 @@ if(is_post_request()) {
   // find the cat by the id
   $cat = find_cat_by_id($id);
 }
-
 ?>
 
 <!-- Set Page Title -->
@@ -26,11 +25,15 @@ if(is_post_request()) {
 <!-- get header -->
 <?php include(SHARED_PATH . '/header.php'); ?>
 
-<!-- Go back to main list link - redundant cos I have main page link? -->
-<a href="<?php echo url_for('/index.php');?>">&laquo; Back to List</a>
 
-<!-- CONSIDER REPLACING THIS WITH JAVASCRIPT? -->
-<h1>Delete Cat</h1>
+<!-- PAGE INTRO SECTION -->
+<div class="intro">
+  <h1>Delete Cat</h1>
+</div>
+
+<!-- MAIN CONTENT SECTION -->
+<div class="main-section">
+  <div class="content-wrap">
 <p>are you sure?</p>
 <?php echo htmlspecialchars($cat['cat_name']); ?>
 
@@ -38,6 +41,12 @@ if(is_post_request()) {
 <form action="<?php echo url_for('cats/delete.php?id=' . htmlspecialchars(urlencode($cat['id']))); ?>" method="post">
   <input type="submit" name="commit" value="Delete Cat" />
 </form>
+
+<!-- Go back to main list link - redundant cos I have main page link? -->
+<a href="<?php echo url_for('/index.php');?>">&laquo; Back to List</a>
+
+</div>
+</div>
 
 <!-- get footer -->
 <?php include(SHARED_PATH . '/footer.php'); ?>

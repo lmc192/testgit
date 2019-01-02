@@ -1,9 +1,7 @@
 <!-- HEADER PAGE - THIS WILL BE LOADED IN EVERY PAGE ON THE SITE FOR CONSISTANCY -->
 
 <!-- Set page title if not defined in page -->
-<?php
-if(!isset($page_title)) { $page_title = 'Cat Site'; }
-?>
+<?php if(!isset($page_title)) { $page_title = 'Cat Site'; } ?>
 
 <!DOCTYPE html>
 <!--Define the website language-->
@@ -16,24 +14,17 @@ if(!isset($page_title)) { $page_title = 'Cat Site'; }
 
   <!-- need to look up what media all is -->
   <!-- link to stylesheet -->
-  <link rel="stylesheet" media="all" href="<?php echo url_for('stylesheets/styles.css'); ?>">
+  <link rel="stylesheet" href="<?php echo url_for('stylesheets/styles.css'); ?>">
 
   <!-- get page title from page -->
   <title>CatSite - <?php echo htmlspecialchars($page_title); ?></title>
-</head>
 
+<!-- HEADER CONTENT -->
+</head>
 <body>
   <header>
+    <div>
     <!-- Header -->
-    <!-- <h1><img src="images/header_image.jpg" alt="ginger"></h1> -->
-    <!--<h1><img src="images/header_image.jpg" alt="ginger">CATS</h1>-->
-    <p>Welcome to Cats Site!  Where you can add your cat to our database</p>
-    <a href="<?php echo url_for('stylesheets/testcss.html'); ?>">CSS Test Page</a>
-
-    <!-- consider having a navigation menu here? -->
-    <navigation>
-      <ul>
-        <li><a href="<?php echo url_for('/index.php'); ?>">Main Page</a></li>
-      </ul>
-    </navigation>
+    <h1>HEADER</h1>
+  </div>
   </header>

@@ -1,116 +1,108 @@
 /*Colour Palette
-#672256 - Dark Pink / Light Purple
-#CF6EC8 - Bright Pink
-#37A49D - Turquoise
-#FCFBF7 - Cream
+#672256 - Dark Pink / Light Purple - Header / footer background colour
+#CF6EC8 - Bright Pink - current intro section background
+#37A49D - Turquoise - current table header colour (change this)
+#FCFBF7 - Cream - current main section background
 #32112E - Dark Purple
 */
 
-/* Font File
--------------------------*/
+/**** FONT FILES ****/
 @font-face {
   font-family: 'little-lord-font-leroy';
   src: url(../fonts/little-lord-font-leroy/little-lord-font-leroy.ttf);
 }
-
-/* Global styles
--------------------------*/
-/* apply a natural box layout model to all elements, but allowing components to change */
-
-/* This style is not working - need to figure out why */
-table th td {
-  border: 1px solid black;
+@font-face {
+  font-family: 'the-bold-font';
+  src: url(../fonts/the-bold-font/theboldfont.ttf);
 }
 
+/**** GLOBAL ****/
+/* Box Fix */
+/* apply a natural box layout model to all elements, but allowing components to change */
+/* https://www.paulirish.com/2012/box-sizing-border-box-ftw/ */
 html {
-  border: 1px solid black;
   box-sizing: border-box;
 }
 *, *:before, *:after {
   box-sizing: inherit;
 }
+
 body {
-  font-family: 'little-lord-font-leroy', sans-serif;
-  margin: 0;
+  border: 1px solid black;
+  font-family: sans-serif;
+  text-align: center;
 }
-h1, h2 {
-  font-family: 'little-lord-font-leroy', sans-serif;
-  font-weight: 400;
-}
-h1 {
-  font-size: 80px;
-}
-h2 {
-  font-size: 40px;
-  margin-top: 0;
-}
-a {
-  color: #37A49D;
-}
-a:hover {
-  /*removes default underline when hover over element*/
-  text-decoration: none;
-}
+/* h1, h2 {
+font-family: 'little-lord-font-leroy', sans-serif;
+font-weight: 400;
+} */
+
+/* Keeps content in the middle of screen */
 .content-wrap {
-  max-width: 950px;
+  width: 950px;
   margin: 0 auto;
   padding: 50px;
-  /* clears floats */
-  overflow: auto;
-}
-.col-narrow {
-  width: 30%;
-  float: left;
-  /* border: 1px solid black; */
-  min-height: 175px;
-}
-.col-wide {
-  width: 70%;
-  float: left;
-  padding-left: 20px;
-  /* border: 1px solid black; */
-  min-height: 175px;
 }
 
-/* Header and Footer styles
--------------------------*/
-header, footer {
-  background: #32112E;
-  color: #FCFBF7;
+.tablestyle {
+  border: 1px solid blue;
 }
-/* header */
-/* .profile-img { */
-  /* width: 300px; */
+
+/**** PAGE INTRO ****/
+.intro {
+  background: #CF6EC8;
+  text-align: center;
+}
+
+/**** MAIN PAGE SECTION ****/
+.main-section {
+  background: #FCFBF7;
+  /* background: lightblue; */
+}
+
+/**** TABLE ****/
+/* https://divtable.com/table-styler/ */
+
+table {
+  border: 2px solid black;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* stiped horizontal rows */
+table.table-style tr:nth-child(even) {
+  background: lightblue;
+}
+
+/* table header */
+table.table-style thead {
+  background: #37A49D;
+  border-bottom: 2px solid black;
+  text-align: center;
+  padding: 2px 10px;
+}
+
+table.table-style td, table.table-style th {
+  /* border: 1px solid red; */
+  padding: 2px 10px;
+  text-align: center;
+}
+
+/**** CAT IMAGE IN VEW PAGE ****/
+.cat-img {
+  width: 200px;
   /* border-radius: 50%; */
   /* float: left; */
   /* margin-right: 30px; */
+
+/**** HEADER AND FOOTER ****/
+header, footer {
+  background: #672256;
+  color: white;
+  width: 950px;
+  margin: 0 auto;
 }
 
-/* aligns header text and image */
-/* header {
-  text-align: center;
-} */
-/* header h1, header h2 { */
-  /* color: white; */
-  /* margin: 0; */
-/* } */
-/* footer */
-/* footer { */
-  /* text-align: center; */
-/* } */
-/* .contact-info a { */
-  /* padding: 10px; */
-  /* display: inline-block; */
-/* } */
+header {
 
-/* Work Experience
--------------------------*/
-.work {
-  background: #46ACC2;
-}
-
-/* Education
--------------------------*/
-.education {
-  background: #42F2F7;
 }

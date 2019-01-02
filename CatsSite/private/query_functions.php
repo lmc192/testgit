@@ -128,7 +128,7 @@ function update_cat($cat) {
   //$result = $db->query($sql);
 
   if($result) {
-    //UPDATE sucessful - go to show page and display updated data
+    //UPDATE sucessful - go to view page and display updated data
     return true;
   } else {
     //UPDATE failes
@@ -136,7 +136,6 @@ function update_cat($cat) {
     db_disconnect($db);
     exit;
   }
-
 }
 
 // Function to count number of cats in the table

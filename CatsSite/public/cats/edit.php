@@ -26,12 +26,12 @@ if(is_post_request()) {
   //validations are contained within the update_cat() function so they are performed here also (before data is sent to DB)
   $result = update_cat($cat);
   if($result === true) {
-      redirect_to(url_for('cats/show.php?id=' . $id));
+    redirect_to(url_for('cats/view.php?id=' . $id));
   } else {
     $errors = $result;
     //var_dump($errors);
   }
-// if not POST request, just show the form again
+  // if not POST request, just show the form again
 } else {
   //get array and assign to variable to use in the page and display details
   $cat = find_cat_by_id($id);
@@ -41,21 +41,24 @@ $cat_count = cat_count();
 
 ?>
 
-<!-- PAGE CONTENT -->
 <!-- Set Page Title -->
 <?php $page_title = 'Edit Cat'; ?>
 
 <!-- get header -->
 <?php include(SHARED_PATH . '/header.php'); ?>
 
-<!-- Go back to main list link - redundant cos I have main page link? -->
-<a href="<?php echo url_for('/index.php');?>">&laquo; Back to List</a>
 
-<h1>Edit Cat</h1>
-<h1>Cat Count: <?php echo $cat_count; ?></h1>
+
+<!-- PAGE INTRO SECTION -->
+<div class="intro">
+  <h1>Edit Cat</h1>
+</div>
 
 <?php echo display_validation_errors($errors); ?>
 
+<!-- MAIN CONTENT SECTION -->
+<div class="main-section">
+  <div class="content-wrap">
 <!-- **EDIT CAT FORM** -->
 <form action="<?php echo url_for('cats/edit.php?id=' . htmlspecialchars(urlencode($id)));?>" method="post">
 
@@ -100,6 +103,12 @@ $cat_count = cat_count();
     </dd>
   </dl>
 </form>
+
+<!-- Go back to main list link - redundant cos I have main page link? -->
+<a href="<?php echo url_for('/index.php');?>">&laquo; Back to List</a>
+
+</div>
+</div>
 
 <!-- get footer -->
 <?php include(SHARED_PATH . '/footer.php'); ?>

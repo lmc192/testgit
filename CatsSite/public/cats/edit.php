@@ -104,6 +104,9 @@ $cat_count = cat_count();
   </dl>
 </form>
 
+<!-- show image for cat -->
+<img class="cat-img" src="<?php echo url_for('/images/' . $cat['file_path']); ?>  " >
+
 <!-- Go back to main list link - redundant cos I have main page link? -->
 <a href="<?php echo url_for('/index.php');?>">&laquo; Back to List</a>
 

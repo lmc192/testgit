@@ -1,13 +1,14 @@
 <?php
 
-// Fundtion to run query to get all data from cat table
+// Function to run query to get all data from cat table
 function find_all_cats() {
   //get global db variable to access it
   global $db;
   //SQL Select Query
   $sql = "SELECT * FROM cats ORDER BY position ASC";
   //Get data
-  $result = mysqli_query($db, $sql);
+  // $result = mysqli_query($db, $sql); //REMOVED TO MAKE CONNECTION OBJECT ORIENTATED
+  $result = $db->query($sql);
   // Test if query sucessful
   confirm_result_set($result);
   return $result;
@@ -22,7 +23,8 @@ function find_cat_by_id($id) {
   //Helps prevent SQLi
   $sql .= "WHERE id= ' " . mysqli_real_escape_string($db, $id) . " ' "; // SELECT * FROM cats WHERE id = '$id';
   //echo $sql;
-  $result = mysqli_query($db, $sql);
+  // $result = mysqli_query($db, $sql); //REMOVED TO MAKE CONNECTION OBJECT ORIENTATED
+  $result = $db->query($sql);
   confirm_result_set($result);
   $cat = mysqli_fetch_assoc($result);
   // free memory
@@ -60,7 +62,6 @@ function validate_cat($cat) {
     $errors[] = "Visible must be true or false";
   }
   return $errors;
-
 }
 
 // Function to insert new cat into DB
@@ -81,13 +82,14 @@ function insert_cat($cat) {
   //SQL INSERT query.  Divided up so values can be used later.  include single quote around variables for security
   $sql = "INSERT INTO cats (cat_name, position, visible)";
   $sql .= "VALUES (";
-  $sql .= " ' " . mysqli_real_escape_string($db, $cat['cat_name']) . " ', ";
-  $sql .= " ' " . mysqli_real_escape_string($db, $cat['position']) . " ', ";
-  $sql .= " ' " . mysqli_real_escape_string($db, $cat['visible']) . " ' ";
+  $sql .= " '" . mysqli_real_escape_string($db, $cat['cat_name']) . "', ";
+  $sql .= " '" . mysqli_real_escape_string($db, $cat['position']) . "', ";
+  $sql .= " '" . mysqli_real_escape_string($db, $cat['visible']) . "' ";
   $sql .= ")";
 
   //SQL INSERT returns true / false
-  $result = mysqli_query($db, $sql);
+  // $result = mysqli_query($db, $sql); //REMOVED TO MAKE CONNECTION OBJECT ORIENTATED
+  $result = $db->query($sql);
 
   if($result) {
     //INSERT sucessfull
@@ -116,16 +118,15 @@ function update_cat($cat) {
   // else go ahead and insert
   //SQL INSERT query.
   $sql = "UPDATE cats SET ";
-  $sql .= "cat_name= ' " . mysqli_real_escape_string($db, $cat['cat_name']) . " ', ";
-  $sql .= "position= ' " . mysqli_real_escape_string($db, $cat['position']) . " ', ";
-  $sql .= "visible= ' " . mysqli_real_escape_string($db, $cat['visible']) . " ' ";
-  $sql .= "WHERE id= ' " . mysqli_real_escape_string($db, $cat['id']) . " ' ";
+  $sql .= "cat_name= '" . mysqli_real_escape_string($db, $cat['cat_name']) . "', ";
+  $sql .= "position= '" . mysqli_real_escape_string($db, $cat['position']) . "', ";
+  $sql .= "visible= '" . mysqli_real_escape_string($db, $cat['visible']) . "' ";
+  $sql .= "WHERE id= '" . mysqli_real_escape_string($db, $cat['id']) . "' ";
   $sql .= "LIMIT 1";
 
-  //ASK MARK OR PAUL ABOUT THIS WHAT'S THE DIFFENRECE????
   //SQL UPDATE returns true / false
-  $result = mysqli_query($db, $sql);
-  //$result = $db->query($sql);
+  // $result = mysqli_query($db, $sql); //REMOVED TO MAKE CONNECTION OBJECT ORIENTATED
+  $result = $db->query($sql);
 
   if($result) {
     //UPDATE sucessful - go to view page and display updated data
@@ -149,18 +150,24 @@ function cat_count() {
 
 function delete_cat($id) {
   global $db;
+
+  //REMOVE THIS LINE HERE???
+  //validate data - gets any errors in a new variable array
+  $validation_errors = validate_cat($cat);
+
   //delete
   $sql = "DELETE FROM cats ";
-  $sql .= "WHERE id= ' " . mysqli_real_escape_string($db, $id) . " ' ";
+  $sql .= "WHERE id= ' " . mysqli_real_escape_string($db, $id) . "' ";
   $sql .= "LIMIT 1";
 
-  $result = mysqli_query($db, $sql);
+  // $result = mysqli_query($db, $sql); //REMOVED TO MAKE CONNECTION OBJECT ORIENTATED
+  $result = $db->query($sql);
 
   //For DELETE query, result is true / false
   if($result) {
     return true;
   } else {
-    //UPDATE failes
+    //DELETE fails
     echo mysql_error($db);
     db_disconnect($db);
     exit;

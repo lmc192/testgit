@@ -21,7 +21,6 @@
 					<th>&nbsp;</th>
 				</tr>
 			</thead>
-
 			<!-- while loop through cat table to display the datay -->
 			<!-- use htmlspecialchars to prevent XSS. DO THIS ANYTIME DYNAMIC DATA IS USED! -->
 			<!-- use urlencode() to handle special characters in parameters -->

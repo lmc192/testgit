@@ -34,18 +34,35 @@ if(is_post_request()) {
 <!-- MAIN CONTENT SECTION -->
 <div class="main-section">
   <div class="content-wrap">
-<p>are you sure?</p>
-<?php echo htmlspecialchars($cat['cat_name']); ?>
 
-<!-- Form creates a post request to return back to this page which prompts the delete to the DB -->
-<form action="<?php echo url_for('cats/delete.php?id=' . htmlspecialchars(urlencode($cat['id']))); ?>" method="post">
-  <input type="submit" name="commit" value="Delete Cat" />
-</form>
+    <?php
 
-<!-- Go back to main list link - redundant cos I have main page link? -->
-<a href="<?php echo url_for('/index.php');?>">&laquo; Back to List</a>
+    //if cat has default.jpg - cannot delete and redisplay
 
-</div>
+    if($cat['file_path'] !== 'default.jpg') {
+      echo 'CANNOT DELETE IT COS REASONS';
+    } else {
+    }
+
+    ?>
+    <p>are you sure?</p>
+    <?php echo htmlspecialchars($cat['cat_name']); ?>
+
+    <!-- Form creates a post request to return back to this page which prompts the delete to the DB -->
+    <form id="delete" action="<?php echo url_for('cats/delete.php?id=' . htmlspecialchars(urlencode($cat['id']))); ?>" method="post">
+      <input type="submit" name="commit" value="Delete Cat" />
+    </form>
+
+    <!-- <script>
+    function myFunction() {
+      document.getElementById("delete").submit();
+    }
+    </script> -->
+
+    <!-- Go back to main list link - redundant cos I have main page link? -->
+    <a href="<?php echo url_for('/index.php');?>">&laquo; Back to List</a>
+
+  </div>
 </div>
 
 <!-- get footer -->

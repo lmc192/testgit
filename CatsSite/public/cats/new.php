@@ -19,7 +19,6 @@ if(is_post_request()) {
   } else {
     $errors = $result;
   }
-
   // if not post request, redirect back to form
 } else {
   //display the blank form
@@ -42,8 +41,11 @@ $cat["position"] = $cat_count;
 
 <!-- PAGE INTRO SECTION -->
 <div class="intro">
-  <h1>Create Cat</h1>
-  <h2>Cat Count: <?php echo $cat_count; ?></h2>
+  <div class="content-wrap">
+  <h2>CREATE CAT PAGE</h2>
+    <h2>Here you can create new cats in the database!</h2>
+    <p>Cat Count: <?php echo $cat_count; ?></p>
+  </div>
 </div>
 
 <!-- MAIN CONTENT SECTION -->
@@ -91,6 +93,9 @@ $cat["position"] = $cat_count;
       </dd>
     </dl>
   </form>
+
+  <!-- show image for cat -->
+  <img class="cat-img" src= "<?php echo url_for('/images/default.jpg');?>" ><br><br>
 
   <!-- Go back to main list link - redundant cos I have main page link? -->
   <a href="<?php echo url_for('/index.php');?>">&laquo; Back to List</a>

@@ -26,7 +26,7 @@ function db_disconnect($connection) {
 ?>
 
 <?php
-// REMOVED ALL OF THE BELOW CODE TO MAKE OBJECT ORIENTATED
+// REMOVED ALL OF THE BELOW CODE TO TRY AND MAKE OBJECT ORIENTATED
 // Creates new connection to database
 // function db_connect() {
 //   $connection = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);

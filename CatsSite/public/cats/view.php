@@ -9,7 +9,6 @@
 
 //get array and assign to variable to use in the page and display details
 $cat = find_cat_by_id($id);
-
 ?>
 
 <!-- Set Page Title -->
@@ -20,38 +19,26 @@ $cat = find_cat_by_id($id);
 
 <!-- PAGE INTRO SECTION -->
 <div class="intro">
-  <div class="content-wrap"
-  <h1><?php echo "View Cat"; ?></h1>
-</div>
+  <div class="content-wrap">
+    <h2>VIEW CAT PAGE</h2>
+    <h2>Here you can view the cats in the database!</h2>
+    <p><?php echo "Cat ID: "; echo htmlspecialchars($id); ?></p>
+  </div>
 </div>
 
 <!-- MAIN CONTENT SECTION -->
 <div class="main-section">
-  <div class="content-wrap"
+  <div class="content-wrap">
+    <p>Cat Name: <?php echo htmlspecialchars($cat['cat_name']); ?></p>
+    <p>Position: <?php echo htmlspecialchars($cat['position']); ?></p>
+    <p>Visible: <?php echo $cat['visible'] == '1' ? 'true' : 'false'; ?></p>
 
-  <!-- use htmlspecialchars to prevent XSS. DO THIS ANYTIME DYNAMIC DATA IS USED! -->
-  <h2><?php echo "Here is the Cat ID: "; echo htmlspecialchars($id); ?></h2>
+    <!-- show image for cat -->
+    <img class="cat-img" src="<?php echo url_for('/images/' . $cat['file_path']); ?>  " ><br><br>
 
-  <h1>Cat: <?php echo htmlspecialchars($cat['cat_name']); ?></h1>
-  <dl>
-    <dt>Cat Name</dt>
-    <dd><?php echo htmlspecialchars($cat['cat_name']); ?></dd>
-  </dl>
-  <dl>
-    <dt>Position</dt>
-    <dd><?php echo htmlspecialchars($cat['position']); ?></dd>
-  </dl>
-  <dl>
-    <dt>Visible</dt>
-    <dd><?php echo $cat['visible'] == '1' ? 'true' : 'false'; ?></dd>
-  </dl>
-
-<!-- show image for cat -->
-<img class="cat-img" src="<?php echo url_for('/images/' . $cat['file_path']); ?>  " >
-
-  <!-- Go back to main list link - redundant cos I have main page link? -->
-  <a href="<?php echo url_for('/index.php');?>">&laquo; Back to List</a>
-</div>
+    <!-- Go back to main list link - redundant cos I have main page link? -->
+    <a href="<?php echo url_for('/index.php');?>">&laquo; Back to List</a>
+  </div>
 </div>
 
 <!-- get footer -->

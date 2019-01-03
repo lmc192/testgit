@@ -23,8 +23,8 @@
 </head>
 <body>
   <header>
-    <div>
+    <div class="content-wrap">
     <!-- Header -->
-    <h1>HEADER</h1>
+    <h1>CAT SITE</h1>
   </div>
   </header>

@@ -47,11 +47,13 @@ $cat_count = cat_count();
 <!-- get header -->
 <?php include(SHARED_PATH . '/header.php'); ?>
 
-
-
 <!-- PAGE INTRO SECTION -->
 <div class="intro">
-  <h1>Edit Cat</h1>
+  <div class="content-wrap">
+  <h2>EDIT CAT PAGE</h2>
+    <h2>Here you can edit the cats in the database!</h2>
+    <p><?php echo "Cat ID: "; echo htmlspecialchars($id); ?></p>
+  </div>
 </div>
 
 <?php echo display_validation_errors($errors); ?>
@@ -105,7 +107,7 @@ $cat_count = cat_count();
 </form>
 
 <!-- show image for cat -->
-<img class="cat-img" src="<?php echo url_for('/images/' . $cat['file_path']); ?>  " >
+<img class="cat-img" src="<?php echo url_for('/images/' . $cat['file_path']); ?>  " ><br><br>
 
 <!-- Go back to main list link - redundant cos I have main page link? -->
 <a href="<?php echo url_for('/index.php');?>">&laquo; Back to List</a>

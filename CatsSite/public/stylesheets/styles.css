@@ -31,6 +31,7 @@ body {
   border: 1px solid black;
   font-family: sans-serif;
   text-align: center;
+  margin: 0 auto;
 }
 /* h1, h2 {
 font-family: 'little-lord-font-leroy', sans-serif;
@@ -41,7 +42,6 @@ font-weight: 400;
 .content-wrap {
   width: 950px;
   margin: 0 auto;
-  padding: 50px;
 }
 
 .tablestyle {
@@ -52,11 +52,14 @@ font-weight: 400;
 .intro {
   background: #CF6EC8;
   text-align: center;
+  padding: 20px;
+  margin: 0 auto;
 }
 
 /**** MAIN PAGE SECTION ****/
 .main-section {
   background: #FCFBF7;
+  padding: 80px;
   /* background: lightblue; */
 }
 
@@ -89,21 +92,50 @@ table.table-style td, table.table-style th {
   text-align: center;
 }
 
+/**** FORM ****/
+input[type=text], select {
+  width: 20%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 20%;
+  background-color: #672256;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #CF6EC8;
+}
+
 /**** CAT IMAGE IN VEW PAGE ****/
 .cat-img {
   width: 200px;
   /* border-radius: 50%; */
   /* float: left; */
   /* margin-right: 30px; */
-
-/**** HEADER AND FOOTER ****/
-header, footer {
-  background: #672256;
-  color: white;
-  width: 950px;
-  margin: 0 auto;
 }
 
+/**** HEADER AND FOOTER ****/
+ header, footer {
+  background: #32112E;
+  color: white;
+  /* width: 950px;
+  margin: 0 auto; */
+}
 header {
-
+  padding: 1px;
+}
+footer {
+  padding: 10px;
 }

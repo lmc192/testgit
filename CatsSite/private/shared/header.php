@@ -25,6 +25,8 @@
   <header>
     <div class="content-wrap">
     <!-- Header -->
-    <h1>CAT SITE</h1>
+<img src="<?php echo url_for('images/cat_jump_2_light.png'); ?>" alt="Jump1">
+<h1>CAT SITE</h1>
+<img src="<?php echo url_for('images/cat_jump_light_right.png'); ?>" alt="Jump2">
   </div>
   </header>

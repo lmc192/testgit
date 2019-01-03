@@ -26,17 +26,18 @@ html {
 *, *:before, *:after {
   box-sizing: inherit;
 }
-
 body {
   border: 1px solid black;
-  font-family: sans-serif;
+  font-family: 'Calisto MT', serif;
   text-align: center;
   margin: 0 auto;
 }
-/* h1, h2 {
-font-family: 'little-lord-font-leroy', sans-serif;
-font-weight: 400;
-} */
+h1 {
+font-family: 'little-lord-font-leroy', serif;
+font-size: 80px;
+letter-spacing: 3px;
+text-shadow: 3px 2px #672256;
+}
 
 /* Keeps content in the middle of screen */
 .content-wrap {
@@ -83,16 +84,17 @@ table.table-style thead {
   background: #37A49D;
   border-bottom: 2px solid black;
   text-align: center;
-  padding: 2px 10px;
+  /* padding: 10px 20px; */
 }
 
 table.table-style td, table.table-style th {
   /* border: 1px solid red; */
-  padding: 2px 10px;
+  padding: 10px 10px;
   text-align: center;
 }
 
 /**** FORM ****/
+/* https://www.w3schools.com/css/css_form.asp */
 input[type=text], select {
   width: 20%;
   padding: 12px 20px;
@@ -103,22 +105,23 @@ input[type=text], select {
   box-sizing: border-box;
 }
 
+/* Button */
 input[type=submit] {
   width: 20%;
   background-color: #672256;
-  color: white;
+  color: #FCFBF7;
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-family: 'Calisto MT';
 }
-
 input[type=submit]:hover {
   background-color: #CF6EC8;
 }
 
-/**** CAT IMAGE IN VEW PAGE ****/
+/**** CAT IMAGE IN VIEW PAGE ****/
 .cat-img {
   width: 200px;
   /* border-radius: 50%; */
@@ -134,8 +137,18 @@ input[type=submit]:hover {
   margin: 0 auto; */
 }
 header {
-  padding: 1px;
+  padding: 40px;
 }
 footer {
   padding: 10px;
+}
+header img {
+  display: inline;
+  width: 80px;
+  height: 80px;
+  shadow: 3px 2px #672256;
+}
+header h1 {
+  display: inline;
+  /* padding: 50px; */
 }

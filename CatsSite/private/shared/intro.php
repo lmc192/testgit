@@ -1,5 +1,3 @@
-<!-- <h1><img src="images/header_image.jpg" alt="ginger"></h1> -->
-
 <!-- get count of cats to display on homepage -->
 <?php $cat_count = cat_count() ?>
 

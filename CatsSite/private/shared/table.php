@@ -10,9 +10,13 @@
 
 <!-- MAIN SECTION INCLUDES TABLE AND OTHER INFORMATION -->
 
-<!-- TABLE -->
 <div class="main-section">
 	<div class="content-wrap">
+		<!-- CREATE NEW CAT BUTTON -->
+		<form action="<?php echo url_for('cats/new.php'); ?>" type="submit" value="Create New Cat">
+			<input type="submit" value="Create New Cat">
+		</form><br>
+		<!-- TABLE -->
 		<table class="table-style">
 			<!-- TABLE HEADERS HERE -->
 			<thead>
@@ -63,10 +67,5 @@
 			<?php
 			mysqli_free_result($cat_set);
 			?>
-
-			<!-- CREATE NEW CAT BUTTON -->
-			<form action="<?php echo url_for('cats/new.php'); ?>" type="submit" value="Create New Cat">
-				<input type="submit" value="Create New Cat">
-			</form><br>
 		</div>
 	</div>

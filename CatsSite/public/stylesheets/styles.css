@@ -157,7 +157,7 @@ input[type=submit]:hover {
 /**** CAT IMAGE IN VIEW PAGE ****/
 .cat-img {
   width: 200px;
-  padding-top: 20px;
+  padding: 20px;
   /* border-radius: 50%; */
   /* float: left; */
   /* margin-right: 30px; */

@@ -1,11 +1,53 @@
 <?php
 
+// Function to count number of cats in the table
+function breed_count() {
+  global $db;
+  $breed_set = find_all_breeds();
+  $result = mysqli_num_rows($breed_set);
+  mysqli_free_result($breed_set);
+  return $result;
+}
+
+// Function to run query to get all data from breed table
+function find_all_breeds() {
+  //get global db variable to access it
+  global $db;
+  //SQL Select Query
+  $sql = "SELECT * FROM breeds";
+  //Get data
+  // $result = mysqli_query($db, $sql); //REMOVED TO MAKE CONNECTION OBJECT ORIENTATED
+  $result = $db->query($sql);
+  // Test if query sucessful
+  confirm_result_set($result);
+  return $result;
+}
+
+//Function to look up breed by the PK
+function find_breed_by_id($id) {
+  //get global db variable to access it
+  global $db;
+  $sql = $sql = "SELECT * FROM breeds ";
+  //http://php.net/manual/en/mysqli.real-escape-string.php - Escapes special characters in a string for use in an SQL statement, taking into account the current charset of the connection
+  //Helps prevent SQLi
+  $sql .= "WHERE id= ' " . mysqli_real_escape_string($db, $id) . " ' "; // SELECT * FROM breed WHERE id = '$id';
+  //echo $sql;
+  // $result = mysqli_query($db, $sql); //REMOVED TO MAKE CONNECTION OBJECT ORIENTATED
+  $result = $db->query($sql);
+  confirm_result_set($result);
+  $cat = mysqli_fetch_assoc($result);
+  // free memory
+  mysqli_free_result($result);
+  //return an assoc array
+  return $breed;
+}
+
 // Function to run query to get all data from cat table
 function find_all_cats() {
   //get global db variable to access it
   global $db;
   //SQL Select Query
-  $sql = "SELECT * FROM cats ORDER BY position ASC";
+  $sql = "SELECT * FROM breeds b INNER JOIN cats c ON b.id = c.breed_id";
   //Get data
   // $result = mysqli_query($db, $sql); //REMOVED TO MAKE CONNECTION OBJECT ORIENTATED
   $result = $db->query($sql);
@@ -18,10 +60,10 @@ function find_all_cats() {
 function find_cat_by_id($id) {
   //get global db variable to access it
   global $db;
-  $sql = "SELECT * FROM cats ";
+  $sql = "SELECT * FROM cats c INNER JOIN breeds b ON c.breed_id = b.id ";
   //http://php.net/manual/en/mysqli.real-escape-string.php - Escapes special characters in a string for use in an SQL statement, taking into account the current charset of the connection
   //Helps prevent SQLi
-  $sql .= "WHERE id= ' " . mysqli_real_escape_string($db, $id) . " ' "; // SELECT * FROM cats WHERE id = '$id';
+  $sql .= "WHERE c.id= ' " . mysqli_real_escape_string($db, $id) . " ' "; // SELECT * FROM cats WHERE id = '$id';
   //echo $sql;
   // $result = mysqli_query($db, $sql); //REMOVED TO MAKE CONNECTION OBJECT ORIENTATED
   $result = $db->query($sql);
@@ -80,11 +122,12 @@ function insert_cat($cat) {
 
   // else go ahead and update
   //SQL INSERT query.  Divided up so values can be used later.  include single quote around variables for security
-  $sql = "INSERT INTO cats (cat_name, position, visible)";
+  $sql = "INSERT INTO cats (cat_name, position, visible, breed_id)";
   $sql .= "VALUES (";
   $sql .= " '" . mysqli_real_escape_string($db, $cat['cat_name']) . "', ";
   $sql .= " '" . mysqli_real_escape_string($db, $cat['position']) . "', ";
-  $sql .= " '" . mysqli_real_escape_string($db, $cat['visible']) . "' ";
+  $sql .= " '" . mysqli_real_escape_string($db, $cat['visible']) . "', ";
+  $sql .= " '" . mysqli_real_escape_string($db, $cat['breed_id']) . "' ";
   $sql .= ")";
 
   //SQL INSERT returns true / false
@@ -108,19 +151,21 @@ function update_cat($cat) {
   global $db;
 
   //validate data - gets any errors in a new variable array
-  $validation_errors = validate_cat($cat);
+  // $validation_errors = validate_cat($cat);
+  //
+  // //http://php.net/manual/en/function.empty.php - checks if variable is empty
+  // if(!empty($validation_errors)) {
+  //   //if there are errors (data in the array) then return those errors and do not execute SQL code
+  //   return $validation_errors;
+  // }
 
-  //http://php.net/manual/en/function.empty.php - checks if variable is empty
-  if(!empty($validation_errors)) {
-    //if there are errors (data in the array) then return those errors and do not execute SQL code
-    return $validation_errors;
-  }
-  // else go ahead and insert
-  //SQL INSERT query.
+  // else go ahead and UPDATE
+  //SQL UPDATE query.
   $sql = "UPDATE cats SET ";
   $sql .= "cat_name= '" . mysqli_real_escape_string($db, $cat['cat_name']) . "', ";
   $sql .= "position= '" . mysqli_real_escape_string($db, $cat['position']) . "', ";
-  $sql .= "visible= '" . mysqli_real_escape_string($db, $cat['visible']) . "' ";
+  $sql .= "visible= '" . mysqli_real_escape_string($db, $cat['visible']) . "', ";
+  $sql .= "breed_id= '" . mysqli_real_escape_string($db, $cat['breed_id']) . "' ";
   $sql .= "WHERE id= '" . mysqli_real_escape_string($db, $cat['id']) . "' ";
   $sql .= "LIMIT 1";
 
@@ -132,8 +177,8 @@ function update_cat($cat) {
     //UPDATE sucessful - go to view page and display updated data
     return true;
   } else {
-    //UPDATE failes
-    echo mysql_error($db);
+    //UPDATE fails
+    echo mysqli_error($db);
     db_disconnect($db);
     exit;
   }
@@ -146,32 +191,6 @@ function cat_count() {
   $result = mysqli_num_rows($cat_set);
   mysqli_free_result($cat_set);
   return $result;
-}
-
-function delete_cat($id) {
-  global $db;
-
-  //REMOVE THIS LINE HERE???
-  //validate data - gets any errors in a new variable array
-  $validation_errors = validate_cat($cat);
-
-  //delete
-  $sql = "DELETE FROM cats ";
-  $sql .= "WHERE id= ' " . mysqli_real_escape_string($db, $id) . "' ";
-  $sql .= "LIMIT 1";
-
-  // $result = mysqli_query($db, $sql); //REMOVED TO MAKE CONNECTION OBJECT ORIENTATED
-  $result = $db->query($sql);
-
-  //For DELETE query, result is true / false
-  if($result) {
-    return true;
-  } else {
-    //DELETE fails
-    echo mysql_error($db);
-    db_disconnect($db);
-    exit;
-  }
 }
 
 ?>

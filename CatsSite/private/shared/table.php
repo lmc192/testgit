@@ -51,18 +51,6 @@
 				</tr><?php } ?>
 			</table><br>
 
-
-<!-- TESTING OUT SOME JAVASCRIPT -->
-			<!-- https://stackoverflow.com/questions/688196/how-to-use-a-link-to-call-javascript -->
-			<script>
-			// if cat has default.jpg - cannot delete and redisplay
-			function testfunction() {
-				if(<?php $cat_table['file_path'] !== 'default.jpg' ?>) {
-					alert("Well hello There");
-				}
-			}
-			</script>
-
 			<!-- free memory -->
 			<?php
 			mysqli_free_result($cat_set);

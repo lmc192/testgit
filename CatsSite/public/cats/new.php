@@ -42,7 +42,7 @@ $cat["position"] = $cat_count;
 <!-- PAGE INTRO SECTION -->
 <div class="intro">
   <div class="content-wrap">
-  <h2>CREATE CAT PAGE</h2>
+    <h2 id="test">CREATE CAT PAGE</h2>
     <h2>Here you can create new cats in the database!</h2>
     <p>Cat Count: <?php echo $cat_count; ?></p>
   </div>
@@ -53,19 +53,23 @@ $cat["position"] = $cat_count;
   <div class="content-wrap">
     <?php echo display_validation_errors($errors); ?>
 
-    <!-- Submit New Cat Form -->
+    <!-- NEW CAT FORM -->
     <!-- sends form data to create.php -->
-    <form action="<?php echo url_for('/cats/new.php'); ?>" method="post">
-      <dl>
-        <dt>Cat Name</dt>
-        <dd><input type="text" name="cat_name" value=""></dd>
-      </dl>
 
-      <!-- POSITION -->
-      <dl>
-        <dt>Position</dt>
-        <dd>
-          <select name="position">
+    <div>
+      <form onsubmit="submitForm()" id="create_cat_form" name="create_cat_form" action="<?php echo url_for('/cats/new.php'); ?>" method="post">
+<p id="formerror">TEST</p>
+        <!-- CAT NAME -->
+        <div>
+
+          <label for="cat_name">Cat Name: </label>
+          <input type="text" id="cat_name" name="cat_name" value=""><br>
+        </div>
+
+        <!-- POSITION -->
+        <div>
+          <label for="position">Position:</label>
+          <select id="position" name="position">
             <!-- create a loop to display each 'available' position in list (using a count of cats in the table) -->
             <?php
             for($i=1; $i <= $cat_count; $i++) {
@@ -74,32 +78,35 @@ $cat["position"] = $cat_count;
                 echo " selected";
               }
               echo ">{$i}</option>";
-            }
-            ?>
-          </select>
-        </dd>
-      </dl>
+            } ?>
+          </select><br>
+        </div>
 
-      <dt>Visible</dt>
-      <dd>
-        <input type="hidden" name="visible" value="0">
-        <input type="checkbox" name="visible" value="1">
-      </dd>
-    </dl>
-    <dl>
-      <dt></dt>
-      <dd>
-        <input type="submit" value="Create Cat">
-      </dd>
-    </dl>
-  </form>
+        <!-- VISIBLE -->
+        <div>
+          <label for="visible">Visible</label>
+          <input type="hidden" id="visible" name="visible" value="0">
+          <input type="checkbox" id="visible" name="visible" value="1"><br>
+          <input id="createbutton" name="createbutton" type="submit" value="Create Cat">
+        </div>
+      </form>
+    </div>
+    <!-- show image for cat -->
+    <img class="cat-img" src= "<?php echo url_for('/images/default.jpg');?>" ><br><br>
 
-  <!-- show image for cat -->
-  <img class="cat-img" src= "<?php echo url_for('/images/default.jpg');?>" ><br><br>
-
-  <!-- Go back to main list link - redundant cos I have main page link? -->
-  <a href="<?php echo url_for('/index.php');?>">&laquo; Back to List</a>
+    <!-- Back Link -->
+    <div class="back-link">
+      <a href="<?php echo url_for('/index.php');?>">&laquo; Back to List</a>
+    </div>
+  </div>
 </div>
-</div>
+
+
+<!-- TESTING JAVASCRIPT -->
+
+<!-- link to javascript -->
+<script src="<?php echo url_for('../public/scripts/scripts.js'); ?>"></script>
+
+
 <!-- get footer -->
 <?php include(SHARED_PATH . '/footer.php'); ?>

@@ -36,8 +36,10 @@ $cat = find_cat_by_id($id);
     <!-- show image for cat -->
     <img class="cat-img" src="<?php echo url_for('/images/' . $cat['file_path']); ?>  " ><br><br>
 
-    <!-- Go back to main list link - redundant cos I have main page link? -->
-    <a href="<?php echo url_for('/index.php');?>">&laquo; Back to List</a>
+    <!-- Back Link -->
+    <div class="back-link">
+      <a href="<?php echo url_for('/index.php');?>">&laquo; Back to List</a>
+    </div>
   </div>
 </div>
 

@@ -12,12 +12,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- favicon https://www.youtube.com/watch?v=kEf1xSwX5D8-->
-  <link rel="shortcut icon" type="image/png" href="<?php echo url_for('images/cat_jump_light.png'); ?>">
+  <link rel="shortcut icon" type="image/png" href="<?php echo url_for('images/favicon.png'); ?>">
   <!-- need to look up what media all is -->
   <!-- link to stylesheet -->
   <link rel="stylesheet" href="<?php echo url_for('stylesheets/styles.css'); ?>">
 
-  <!-- get page title from page -->
+   <!-- get page title from page -->
   <title>CatSite - <?php echo htmlspecialchars($page_title); ?></title>
 
 <!-- HEADER CONTENT -->

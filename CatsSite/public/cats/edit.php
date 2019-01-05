@@ -50,7 +50,7 @@ $cat_count = cat_count();
 <!-- PAGE INTRO SECTION -->
 <div class="intro">
   <div class="content-wrap">
-  <h2>EDIT CAT PAGE</h2>
+    <h2>EDIT CAT PAGE</h2>
     <h2>Here you can edit the cats in the database!</h2>
     <p><?php echo "Cat ID: "; echo htmlspecialchars($id); ?></p>
   </div>
@@ -58,61 +58,56 @@ $cat_count = cat_count();
 
 <?php echo display_validation_errors($errors); ?>
 
+
 <!-- MAIN CONTENT SECTION -->
 <div class="main-section">
   <div class="content-wrap">
-<!-- **EDIT CAT FORM** -->
-<form action="<?php echo url_for('cats/edit.php?id=' . htmlspecialchars(urlencode($id)));?>" method="post">
 
-  <!-- CAT NAME -->
-  <dl>
-    <dt>Cat Name</dt>
-    <!-- displays the cat name which has been submitted on the form -->
-    <dd><input type="text" name="cat_name" value="<?php echo htmlspecialchars($cat['cat_name']); ?>"></dd>
-  </dl>
+    <!-- EDIT CAT FORM -->
+    <form id="edit_cat" action="<?php echo url_for('cats/edit.php?id=' . htmlspecialchars(urlencode($id)));?>" method="post">
 
-  <!-- POSITION -->
-  <dl>
-    <dt>Position</dt>
-    <dd>
-      <select name="position">
-        <!-- create a loop to display each 'available' position in list (using a count of cats in the table) -->
-        <?php
-        for($i=1; $i <= $cat_count; $i++) {
-          echo "<option value=\"{$i}\"";
-          if($cat["position"] == $i) {
-            echo " selected";
+      <!-- CAT NAME -->
+      <div>
+        <label for="cat_name">Cat Name</label>
+        <!-- displays the cat name which has been submitted on the form -->
+        <input type="text" name="cat_name" value="<?php echo htmlspecialchars($cat['cat_name']); ?>"><br>
+      </div>
+
+      <!-- POSITION -->
+      <div>
+        <label for ="position">Position</label>
+        <select name="position">
+          <!-- create a loop to display each 'available' position in list (using a count of cats in the table) -->
+          <?php
+          for($i=1; $i <= $cat_count; $i++) {
+            echo "<option value=\"{$i}\"";
+            if($cat["position"] == $i) {
+              echo " selected";
+            }
+            echo ">{$i}</option>";
           }
-          echo ">{$i}</option>";
-        }
-        ?>
-      </select>
-    </dd>
-  </dl>
+          ?>
+        </select><br>
+      </div>
 
-  <!-- VISIBLE -->
-  <dl>
-    <dt>Visible</dt>
-    <dd>
-      <input type="hidden" name="visible" value="0">
-      <input type="checkbox" name="visible" value="1" <?php if ($cat['visible'] == "1") {echo " checked"; } ?>>
-    </dd>
-  </dl>
-  <dl>
-    <dt></dt>
-    <dd>
-      <input type="submit" value="Edit Cat">
-    </dd>
-  </dl>
-</form>
+      <!-- VISIBLE -->
+      <div>
+        <label for="visible">Visible</label>
+        <input type="hidden" name="visible" value="0">
+        <input type="checkbox" name="visible" value="1" <?php if ($cat['visible'] == "1") {echo " checked"; } ?>><br>
+        <input type="submit" value="Edit Cat">
+      </div>
+    </form>
 
-<!-- show image for cat -->
-<img class="cat-img" src="<?php echo url_for('/images/' . $cat['file_path']); ?>  " ><br><br>
+    <!-- show image for cat -->
+    <img class="cat-img" src="<?php echo url_for('/images/' . $cat['file_path']); ?>  " ><br><br>
 
-<!-- Go back to main list link - redundant cos I have main page link? -->
-<a href="<?php echo url_for('/index.php');?>">&laquo; Back to List</a>
+    <!-- Back Link -->
+    <div class="back-link">
+      <a href="<?php echo url_for('/index.php');?>">&laquo; Back to List</a>
+    </div>
 
-</div>
+  </div>
 </div>
 
 <!-- get footer -->

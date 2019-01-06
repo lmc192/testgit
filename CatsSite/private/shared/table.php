@@ -6,7 +6,7 @@
 <?php require_once('../private/start.php'); ?>
 
 <!-- Get data for all cats table -->
-<?php $cats = find_all_cats(); ?>
+<?php $cat_set = find_all_cats(); ?>
 
 <!-- MAIN SECTION INCLUDES TABLE AND OTHER INFORMATION -->
 
@@ -26,36 +26,34 @@
 					<th>Visible</th>
 					<th>Cat Name</th>
 					<th>File Path</th>
-					<th>Breed</th>
 					<th>&nbsp;</th>
 					<th>&nbsp;</th>
 				</tr>
 			</thead>
 
 			<!-- while loop through cat table to display the data -->
-			<?php while($cat_array = mysqli_fetch_assoc($cats)) { ?>
+			<?php while($cat_table = mysqli_fetch_assoc($cat_set)) { ?>
 				<tr>
-					<td><?php echo htmlspecialchars($cat_array['id']); ?></td>
-					<td><?php echo htmlspecialchars($cat_array['position']); ?></td>
+					<td><?php echo htmlspecialchars($cat_table['id']); ?></td>
+					<td><?php echo htmlspecialchars($cat_table['position']); ?></td>
 					<!-- no need for htmlspecialchars here as checking for 1 and conrtolling the response here with php -->
-					<td><?php echo $cat_array['visible'] == 1 ? 'true' : 'false'; ?></td>
-					<td><?php echo htmlspecialchars($cat_array['cat_name']); ?></td>
-					<td><?php echo htmlspecialchars($cat_array['file_path']); ?></td>
-					<td><?php echo htmlspecialchars($cat_array['breed_name']); ?></td>
+					<td><?php echo $cat_table['visible'] == 1 ? 'true' : 'false'; ?></td>
+					<td><?php echo htmlspecialchars($cat_table['cat_name']); ?></td>
+					<td><?php echo htmlspecialchars($cat_table['file_path']); ?></td>
 
 					<!-- VIEW COLUMN -->
 					<!-- takes you to the view page for the relevant record, passes ID onto the view page -->
-					<td><a class="action" href="<?php echo url_for('cats/view.php?id=' . htmlspecialchars(urlencode($cat_array['id']))); ?>">View</a></td>
+					<td><a class="action" href="<?php echo url_for('cats/view.php?id=' . htmlspecialchars(urlencode($cat_table['id']))); ?>">View</a></td>
 
 					<!-- EDIT COLUMN -->
 					<!-- takes you to the edit page for the relevant record, passes ID onto the view page -->
-					<td><a class="action" href="<?php echo url_for('cats/edit.php?id=' . htmlspecialchars(urlencode($cat_array['id']))); ?>">Edit</a></td>
+					<td><a class="action" href="<?php echo url_for('cats/edit.php?id=' . htmlspecialchars(urlencode($cat_table['id']))); ?>">Edit</a></td>
 				</tr><?php } ?>
 			</table><br>
 
 			<!-- free memory -->
 			<?php
-			mysqli_free_result($cats);
+			mysqli_free_result($cat_set);
 			?>
 		</div>
 	</div>

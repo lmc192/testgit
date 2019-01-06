@@ -29,18 +29,21 @@ $cat = find_cat_by_id($id);
 <!-- MAIN CONTENT SECTION -->
 <div class="main-section">
   <div class="content-wrap">
-    <p>Cat Name: <?php echo htmlspecialchars($cat['cat_name']); ?></p>
-    <p>Age: <?php echo htmlspecialchars($cat['age']); ?></p>
-    <p>Gender: <?php echo htmlspecialchars($cat['gender_name']); ?></p>
-    <p>Position: <?php echo htmlspecialchars($cat['position']); ?></p>
-    <p>Breed: <?php echo htmlspecialchars($cat['breed_name']); ?></p>
-    <!-- show image for cat -->
-    <img class="cat-img" src="<?php echo url_for('/images/' . $cat['file_path']); ?>  " ><br><br>
+    <p><strong>Cat Name: </strong><?php echo htmlspecialchars($cat['cat_name']); ?></p>
+    <p><strong>Age: </strong><?php echo htmlspecialchars($cat['age']); ?></p>
+    <p><strong>Gender: </strong><?php echo htmlspecialchars($cat['gender_name']); ?></p>
+    <p><strong>Position: </strong><?php echo htmlspecialchars($cat['position']); ?></p>
+    <p><strong>Breed: </strong><?php echo htmlspecialchars($cat['breed_name']); ?></p>
 
     <!-- Back Link -->
     <div class="back-link">
       <a href="<?php echo url_for('/index.php');?>">&laquo; Back to List</a>
     </div>
+
+    <!-- show image for cat -->
+    <img class="cat-img" src="<?php echo url_for('images/uploads/' . $cat['file_path']); ?>  " ><br><br>
+
+
   </div>
 </div>
 

@@ -88,7 +88,6 @@ function insert_cat($cat) {
     return true;
   } else {
     //INSERT fails
-    var_dump($sql);
     echo mysql_error($db);
     db_disconnect($db);
     exit;

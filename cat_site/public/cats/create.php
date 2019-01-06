@@ -13,8 +13,6 @@ if(is_post_request()) {
   $cat['gender_id'] = $_POST['gender_id'] ?? '';
   $cat['age'] = $_POST['age'] ?? '';
 
-  var_dump($_POST);
-
   // check for true value then redirect with new value.
   $result = insert_cat($cat);
   if($result === true) {
@@ -59,7 +57,7 @@ $cat["position"] = $cat_count;
     <!-- sends form data to create.php -->
 
     <div>
-      <form id="create_cat_form" name="create_cat_form" action="<?php echo url_for('/cats/new.php'); ?>" method="post">
+      <form id="create_cat_form" name="create_cat_form" action="<?php echo url_for('/cats/create.php'); ?>" method="post">
         <p class="validate" id="formerrorname"></p>
         <p class="validate" id="formerrorage"></p>
 
@@ -125,17 +123,20 @@ $cat["position"] = $cat_count;
 
         <!--SUBMIT BUTTON-->
         <div>
-          <input id="createbutton" name="createbutton" type="submit" value="Create Cat">
+          <input class="create_cat_button" id="createbutton" name="createbutton" type="submit" value="Create Cat">
         </div>
       </form>
     </div>
-    <!-- show image for cat -->
-    <img class="cat-img" src= "<?php echo url_for('/images/default.jpg');?>" ><br><br>
-
+    
     <!-- Back Link -->
     <div class="back-link">
       <a href="<?php echo url_for('/index.php');?>">&laquo; Back to List</a>
     </div>
+
+    <!-- show image for cat -->
+    <img class="cat-img" src= "<?php echo url_for('/images/uploads/default.jpg');?>" ><br><br>
+
+
   </div>
 </div>
 

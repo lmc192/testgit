@@ -6,7 +6,7 @@ document.edit_cat_form.onsubmit = function() {
   var age = document.edit_cat_form.age.value;
   var name = document.edit_cat_form.cat_name.value;
   if (name==="" || isNaN(age) || Number(age) > 25 || age=="") {
-    alert("Name can't be blank / Age can't be below 25 not a number");
+    alert("Name can't be blank / Age must be a number less than 25");
     return false;
   }
 }

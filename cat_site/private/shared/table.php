@@ -13,7 +13,7 @@
 <div class="main-section">
 	<div class="content-wrap">
 		<!-- CREATE NEW CAT BUTTON -->
-		<form action="<?php echo url_for('cats/new.php'); ?>" type="submit" value="Create New Cat">
+		<form action="<?php echo url_for('cats/create.php'); ?>" type="submit" value="Create New Cat">
 			<input class="create_cat_button" type="submit" value="Create New Cat">
 		</form><br>
 		<!-- TABLE -->
@@ -50,8 +50,8 @@
 				</tr><?php } ?>
 			</table><br>
 			<!-- free memory -->
-			<?php
-			mysqli_free_result($cats);
-			?>
+			<?php mysqli_free_result($cats);?>
+<!-- random cat video link (for fun) -->
+			<p><a href="<?php echo url_for('cats/video.php'); ?>">Click here to see a video!</a></p>
 		</div>
 	</div>

@@ -11,7 +11,7 @@ if (!isset($_GET['id'])) {
 // declare ID variable, GET from previous POST (sent in from index.php)
 $id = $_GET['id'];
 // $b_id = $_GET['breed_id'];
-// Handles new cat values sent in on form from new.php
+// Handles new cat values sent in on form from create.php
 
 //Check POST request is made here.
 if(is_post_request()) {
@@ -139,17 +139,19 @@ $cat_count = cat_count();
 
       <!--SUBMIT BUTTON-->
       <div>
-        <input type="submit" value="Edit Cat">
+        <input class="create_cat_button" type="submit" value="Edit Cat">
       </div>
     </form>
-
-    <!-- show image for cat -->
-    <img class="cat-img" src="<?php echo url_for('/images/' . $cat['file_path']); ?>  " ><br><br>
 
     <!-- Back Link -->
     <div class="back-link">
       <a href="<?php echo url_for('/index.php');?>">&laquo; Back to List</a>
     </div>
+
+    <!-- show image for cat -->
+    <img class="cat-img" src="<?php echo url_for('/images/uploads/' . $cat['file_path']); ?>  " ><br><br>
+
+
 
   </div>
 </div>

@@ -1,10 +1,8 @@
 <!-- FOOTER PAGE - THIS WILL BE LOADED IN EVERY PAGE ON THE SITE FOR CONSISTANCY -->
 <footer>
-	<div>
 		<!-- footer -->
 		<!-- copyright with current year -->
 		&copy; <?php echo date('Y'); ?> Laura Cain
-	</div>
 </footer>
 </body>
 </html>

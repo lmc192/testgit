@@ -9,8 +9,13 @@ if(is_post_request()) {
   $cat['cat_name'] = $_POST['cat_name'] ?? '';
   $cat['position'] = $_POST['position'] ?? '';
   $cat['visible'] = $_POST['visible'] ?? '';
+  $cat['breed_id'] = $_POST['breed_id'] ?? '';
+  $cat['gender_id'] = $_POST['gender_id'] ?? '';
+  $cat['age'] = $_POST['age'] ?? '';
 
-  //check for true value then redirect with new value.
+  var_dump($_POST);
+
+  // check for true value then redirect with new value.
   $result = insert_cat($cat);
   if($result === true) {
     //http://php.net/manual/en/mysqli.insert-id.php - Returns the auto generated id used in the latest query
@@ -51,19 +56,25 @@ $cat["position"] = $cat_count;
 <!-- MAIN CONTENT SECTION -->
 <div class="main-section">
   <div class="content-wrap">
-    <?php echo display_validation_errors($errors); ?>
 
     <!-- NEW CAT FORM -->
     <!-- sends form data to create.php -->
 
     <div>
-      <form onsubmit="submitForm()" id="create_cat_form" name="create_cat_form" action="<?php echo url_for('/cats/new.php'); ?>" method="post">
-<p id="formerror">TEST</p>
+      <form id="create_cat_form" name="create_cat_form" action="<?php echo url_for('/cats/new.php'); ?>" method="post">
+        <p class="validate" id="formerrorname"></p>
+        <p class="validate" id="formerrorage"></p>
+
         <!-- CAT NAME -->
         <div>
-
           <label for="cat_name">Cat Name: </label>
           <input type="text" id="cat_name" name="cat_name" value=""><br>
+        </div>
+
+        <!-- AGE -->
+        <div>
+          <label for="age">Age: </label>
+          <input type="text" id="age" name="age" value=""><br>
         </div>
 
         <!-- POSITION -->
@@ -82,11 +93,40 @@ $cat["position"] = $cat_count;
           </select><br>
         </div>
 
-        <!-- VISIBLE -->
+        <!-- GENDER -->
         <div>
-          <label for="visible">Visible</label>
-          <input type="hidden" id="visible" name="visible" value="0">
-          <input type="checkbox" id="visible" name="visible" value="1"><br>
+          <label for ="gender">Gender</label>
+          <select name="gender_id">
+            <!-- create a loop to display each breed in list -->
+            <?php
+            $gender_set = find_all_genders();
+            while($gender = mysqli_fetch_assoc($gender_set)) {
+              echo "<option value=\"" . htmlspecialchars($gender['gender_id']) . "\"";
+              echo ">" . htmlspecialchars($gender['gender_name']) . "</option>";
+            }
+            mysqli_free_result($gender_set);
+            ?>
+          </select><br>
+        </div>
+
+        <!-- BREED -->
+        <div>
+          <label for ="breed">Breed</label>
+          <select name="breed_id">
+            <!-- create a loop to display each breed in list -->
+            <?php
+            $breeds_set = find_all_breeds();
+            while($breed = mysqli_fetch_assoc($breeds_set)) {
+              echo "<option value=\"" . htmlspecialchars($breed['breed_id']) . "\"";
+              echo ">" . htmlspecialchars($breed['breed_name']) . "</option>";
+            }
+            mysqli_free_result($breed_set);
+            ?>
+          </select><br>
+        </div>
+
+        <!--SUBMIT BUTTON-->
+        <div>
           <input id="createbutton" name="createbutton" type="submit" value="Create Cat">
         </div>
       </form>
@@ -101,9 +141,7 @@ $cat["position"] = $cat_count;
   </div>
 </div>
 
-
 <!-- TESTING JAVASCRIPT -->
-
 <!-- link to javascript -->
 <script src="<?php echo url_for('../public/scripts/scripts.js'); ?>"></script>
 

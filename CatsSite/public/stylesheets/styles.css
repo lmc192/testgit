@@ -39,6 +39,10 @@ letter-spacing: 3px;
 text-shadow: 3px 2px #672256;
 }
 
+p {
+  font-weight: bold;
+}
+
 /* Keeps content in the middle of screen */
 .content-wrap {
   width: 950px;
@@ -111,9 +115,17 @@ table.table-style td, table.table-style th {
   text-align: center;
 }
 
+.create_cat_button {
+  font-size: 24px;
+}
+
 /**** FORM ****/
 /* https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Your_first_HTML_form */
 /* https://www.w3schools.com/css/css_form.asp */
+
+p.validate {
+  color: red;
+}
 
 input[type=text], select {
   width: 20%;
@@ -157,7 +169,7 @@ input[type=submit]:hover {
 /**** CAT IMAGE IN VIEW PAGE ****/
 .cat-img {
   width: 200px;
-  padding-top: 20px;
+  padding: 20px;
   /* border-radius: 50%; */
   /* float: left; */
   /* margin-right: 30px; */

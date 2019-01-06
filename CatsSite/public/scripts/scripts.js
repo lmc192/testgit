@@ -1,20 +1,24 @@
-//target the text form for entering cat name - do something when user clicks out of box
+// target the text form for entering cat name - do something when user clicks out of box
 document.create_cat_form.cat_name.onblur = function() {
   //if cat name field is blank, add a <p> element above the form to tell user not to submit blank
-  if (document.create_cat_form.cat_name.value==="") {
-    // alert("All Kitties Need Names!")
-    var x = document.getElementById("formerror");
-    x.innerHTML = "Name is poo";
+var name = document.create_cat_form.cat_name.value;
+  if (name==="") {
+    document.getElementById("formerrorname").innerHTML = "NO NAME";
+  } else if (name!=="") {
+    document.getElementById("formerrorname").innerHTML = ""
   }
 }
 
-//target the button part of the form - do something when user clicks the button
-// document.create_cat_form.createbutton.onclick = function() {
-//   //if cat name field is blank, add a <p> element above the form to tell user not to submit blank
-//   if (document.create_cat_form.cat_name.value==="") {
-//     alert("All Kitties Need Names!")
-//   }
-// }
+// target the text form for entering cat name - do something when user clicks out of box
+document.create_cat_form.age.onblur = function() {
+  //if cat name field is blank, add a <p> element above the form to tell user not to submit blank
+var age = document.create_cat_form.age.value;
+  if (isNaN(age) || Number(age) > 25 || age=="") {
+    document.getElementById("formerrorage").innerHTML = "AGE MUST BE A NUMBER AND LESS THAN 25";
+  } else if (Number(age) < 25 && Number(age) !=="") {
+    document.getElementById("formerrorage").innerHTML = ""
+  }
+}
 
 //target the select drop down option part of the form - do something when user changes this
 document.create_cat_form.position.onchange = function() {
@@ -27,6 +31,7 @@ document.create_cat_form.position.onchange = function() {
   }
 }
 
+
 //onblur - when you click out of the targeted element
 //onchange - when you change the element
 //onclick - when you click on the element
@@ -35,10 +40,14 @@ document.create_cat_form.position.onchange = function() {
 //onkeydown - when you push a keyboard key
 //when the browser loads
 
-
-
-document.create_cat_form.onsubmit = function() {
-  if (document.create_cat_form.cat_name.value==="") {
-  alert("Submission Interrupted");
-  return false;
-} }
+//ALERT to prevent form submission when name is blank andwhen age is not a valid number < 25
+document.create_cat_form.onsubmit = function()
+{
+  // var name = document.create_cat_form.cat_name.value;
+  var age = document.create_cat_form.age.value;
+  var name = document.create_cat_form.cat_name.value;
+  if (name==="" || isNaN(age) || Number(age) > 25 || age=="") {
+    alert("Name can't be blank / Age can't be below 25 not a number");
+    return false;
+  }
+}

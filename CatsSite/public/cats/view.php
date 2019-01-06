@@ -30,9 +30,10 @@ $cat = find_cat_by_id($id);
 <div class="main-section">
   <div class="content-wrap">
     <p>Cat Name: <?php echo htmlspecialchars($cat['cat_name']); ?></p>
+    <p>Age: <?php echo htmlspecialchars($cat['age']); ?></p>
+    <p>Gender: <?php echo htmlspecialchars($cat['gender_name']); ?></p>
     <p>Position: <?php echo htmlspecialchars($cat['position']); ?></p>
-    <p>Visible: <?php echo $cat['visible'] == '1' ? 'true' : 'false'; ?></p>
-
+    <p>Breed: <?php echo htmlspecialchars($cat['breed_name']); ?></p>
     <!-- show image for cat -->
     <img class="cat-img" src="<?php echo url_for('/images/' . $cat['file_path']); ?>  " ><br><br>
 

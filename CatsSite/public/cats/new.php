@@ -21,10 +21,8 @@ if(is_post_request()) {
     //http://php.net/manual/en/mysqli.insert-id.php - Returns the auto generated id used in the latest query
     $new_id = mysqli_insert_id($db);
     redirect_to(url_for('cats/view.php?id=' . $new_id));
-  } else {
-    $errors = $result;
-  }
   // if not post request, redirect back to form
+}
 } else {
   //display the blank form
 }
@@ -95,7 +93,7 @@ $cat["position"] = $cat_count;
 
         <!-- GENDER -->
         <div>
-          <label for ="gender">Gender</label>
+          <label for ="gender">Gender: </label>
           <select name="gender_id">
             <!-- create a loop to display each breed in list -->
             <?php
@@ -111,7 +109,7 @@ $cat["position"] = $cat_count;
 
         <!-- BREED -->
         <div>
-          <label for ="breed">Breed</label>
+          <label for ="breed">Breed: </label>
           <select name="breed_id">
             <!-- create a loop to display each breed in list -->
             <?php
@@ -143,7 +141,7 @@ $cat["position"] = $cat_count;
 
 <!-- TESTING JAVASCRIPT -->
 <!-- link to javascript -->
-<script src="<?php echo url_for('../public/scripts/scripts.js'); ?>"></script>
+<script src="<?php echo url_for('../public/scripts/createform.js'); ?>"></script>
 
 
 <!-- get footer -->

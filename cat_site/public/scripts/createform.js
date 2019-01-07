@@ -35,12 +35,12 @@ document.create_cat_form.onsubmit = function() {
 ///////////OTHER JAVASCRIPT FUN THINGS////////////////
 //CREATE CAT//
 //target the select drop down option part of the form - do something when user changes this
-document.create_cat_form.position.onchange = function() {
+document.create_cat_form.ranking.onchange = function() {
   //create a variable for the index of the selected option (which is considered an array)
-  var id = document.create_cat_form.position.selectedIndex;
+  var id = document.create_cat_form.ranking.selectedIndex;
   //create a new variable for the value against the selected index
-  var position = document.create_cat_form.position[id].value;
-  if (position = 1) {
-    document.getElementById("test").innerHTML = "IM DOING A TEST YOU JUST SELETCTED POSITION ONE MATE!!";
+  var ranking = document.create_cat_form.ranking[id].value;
+  if (ranking = 1) {
+    document.getElementById("test").innerHTML = "IM DOING A TEST YOU JUST SELETCTED TOP RANKING MATE!!";
   }
 }

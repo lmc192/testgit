@@ -32,7 +32,7 @@ $cat = find_cat_by_id($id);
     <p><strong>Cat Name: </strong><?php echo htmlspecialchars($cat['cat_name']); ?></p>
     <p><strong>Age: </strong><?php echo htmlspecialchars($cat['age']); ?></p>
     <p><strong>Gender: </strong><?php echo htmlspecialchars($cat['gender_name']); ?></p>
-    <p><strong>Position: </strong><?php echo htmlspecialchars($cat['position']); ?></p>
+    <p><strong>Ranking: </strong><?php echo htmlspecialchars($cat['ranking']); ?></p>
     <p><strong>Breed: </strong><?php echo htmlspecialchars($cat['breed_name']); ?></p>
 
     <!-- Back Link -->

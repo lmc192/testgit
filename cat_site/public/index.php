@@ -24,4 +24,4 @@ Need full file path here as path definitions are contained within start.php -->
 <?php include SHARED_PATH . '/table.php'; ?>
 
 <!-- get footer -->
-<?php include SHARED_PATH . '/footer.php' ; ?>
+<?php include SHARED_PATH . '/footer.php'; ?>

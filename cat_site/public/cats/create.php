@@ -7,7 +7,7 @@ if(is_post_request()) {
   //Read values that have been submitted to this page by a form
   $cat = [];
   $cat['cat_name'] = $_POST['cat_name'] ?? '';
-  $cat['position'] = $_POST['position'] ?? '';
+  $cat['ranking'] = $_POST['ranking'] ?? '';
   $cat['visible'] = $_POST['visible'] ?? '';
   $cat['breed_id'] = $_POST['breed_id'] ?? '';
   $cat['gender_id'] = $_POST['gender_id'] ?? '';
@@ -28,8 +28,9 @@ if(is_post_request()) {
 //Get local variables
 $cat_count = cat_count() + 1;
 
+//array for displaying the list of numbers in the ranking select part of the form
 $cat = [];
-$cat["position"] = $cat_count;
+$cat["ranking"] = $cat_count;
 
 ?>
 
@@ -45,7 +46,7 @@ $cat["position"] = $cat_count;
   <div class="content-wrap">
     <h2 id="test">CREATE CAT PAGE</h2>
     <h2>Here you can create new cats in the database!</h2>
-    <p>Cat Count: <?php echo $cat_count; ?></p>
+    <p>Cat Count will be: <?php echo $cat_count; ?></p>
   </div>
 </div>
 
@@ -55,7 +56,6 @@ $cat["position"] = $cat_count;
 
     <!-- NEW CAT FORM -->
     <!-- sends form data to create.php -->
-
     <div>
       <form id="create_cat_form" name="create_cat_form" action="<?php echo url_for('/cats/create.php'); ?>" method="post">
         <p class="validate" id="formerrorname"></p>
@@ -73,15 +73,15 @@ $cat["position"] = $cat_count;
           <input type="text" id="age" name="age" value=""><br>
         </div>
 
-        <!-- POSITION -->
+        <!-- RANKING -->
         <div>
-          <label for="position">Position:</label>
-          <select id="position" name="position">
-            <!-- create a loop to display each 'available' position in list (using a count of cats in the table) -->
+          <label for="ranking">Ranking: </label>
+          <select id="ranking" name="ranking">
+            <!-- create a loop to display a list of numbers using a count of cats in the table -->
             <?php
             for($i=1; $i <= $cat_count; $i++) {
               echo "<option value=\"{$i}\"";
-              if($cat["position"] == $i) {
+              if($cat["ranking"] == $i) {
                 echo " selected";
               }
               echo ">{$i}</option>";
@@ -127,7 +127,7 @@ $cat["position"] = $cat_count;
         </div>
       </form>
     </div>
-    
+
     <!-- Back Link -->
     <div class="back-link">
       <a href="<?php echo url_for('/index.php');?>">&laquo; Back to List</a>

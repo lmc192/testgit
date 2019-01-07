@@ -1,5 +1,7 @@
 <?php
 
+  // Changed syntax slightly to:  $result = mysqli_query($db, $sql); //REMOVED TO MAKE CONNECTION OBJECT ORIENTATED
+
 // Function to run query to get all data from gender
 function find_all_genders() {
   //get global db variable to access it
@@ -7,8 +9,8 @@ function find_all_genders() {
   //SQL Select Query
   $sql = "SELECT * FROM genders";
   //Get data
-  // $result = mysqli_query($db, $sql); //REMOVED TO MAKE CONNECTION OBJECT ORIENTATED
-  $result = $db->query($sql);
+  // $result = $db->query($sql);
+  $result = mysqli_query($db, $sql);
   // Test if query sucessful
   confirm_result_set($result);
   return $result;
@@ -21,7 +23,6 @@ function find_all_breeds() {
   //SQL Select Query
   $sql = "SELECT * FROM breeds";
   //Get data
-  // $result = mysqli_query($db, $sql); //REMOVED TO MAKE CONNECTION OBJECT ORIENTATED
   $result = $db->query($sql);
   // Test if query sucessful
   confirm_result_set($result);
@@ -36,9 +37,8 @@ function find_all_cats() {
   $sql = "SELECT * FROM breeds b
   INNER JOIN cats c ON b.breed_id = c.breed_id
   INNER JOIN genders d on c.gender_id = d.gender_id
-  ORDER BY c.position asc ";
+  ORDER BY c.ranking asc ";
   //Get data
-  // $result = mysqli_query($db, $sql); //REMOVED TO MAKE CONNECTION OBJECT ORIENTATED
   $result = $db->query($sql);
   // Test if query sucessful
   confirm_result_set($result);
@@ -49,12 +49,13 @@ function find_all_cats() {
 function find_cat_by_id($id) {
   //get global db variable to access it
   global $db;
-  $sql = "SELECT * FROM cats c INNER JOIN breeds b ON c.breed_id = b.breed_id INNER JOIN genders d on c.gender_id = d.gender_id ";
+  $sql = "SELECT * FROM cats c
+  INNER JOIN breeds b ON c.breed_id = b.breed_id
+  INNER JOIN genders d on c.gender_id = d.gender_id ";
   //http://php.net/manual/en/mysqli.real-escape-string.php - Escapes special characters in a string for use in an SQL statement, taking into account the current charset of the connection
   //Helps prevent SQLi
   $sql .= "WHERE c.id= ' " . mysqli_real_escape_string($db, $id) . " ' "; // SELECT * FROM cats WHERE id = '$id';
   //echo $sql;
-  // $result = mysqli_query($db, $sql); //REMOVED TO MAKE CONNECTION OBJECT ORIENTATED
   $result = $db->query($sql);
   confirm_result_set($result);
   $cat = mysqli_fetch_assoc($result);
@@ -70,17 +71,16 @@ function insert_cat($cat) {
   global $db;
 
   //SQL INSERT query.  Divided up so values can be used later.  include single quote around variables for security
-  $sql = "INSERT INTO cats (cat_name, age, position, breed_id, gender_id) ";
+  $sql = "INSERT INTO cats (cat_name, age, ranking, breed_id, gender_id) ";
   $sql .= "VALUES (";
   $sql .= " '" . mysqli_real_escape_string($db, $cat['cat_name']) . "', ";
   $sql .= " '" . mysqli_real_escape_string($db, $cat['age']) . "', ";
-  $sql .= " '" . mysqli_real_escape_string($db, $cat['position']) . "', ";
+  $sql .= " '" . mysqli_real_escape_string($db, $cat['ranking']) . "', ";
   $sql .= " '" . mysqli_real_escape_string($db, $cat['breed_id']) . "', ";
   $sql .= " '" . mysqli_real_escape_string($db, $cat['gender_id']) . "' ";
   $sql .= ")";
 
   //SQL INSERT returns true / false
-  // $result = mysqli_query($db, $sql); //REMOVED TO MAKE CONNECTION OBJECT ORIENTATED
   $result = $db->query($sql);
 
   if($result) {
@@ -103,7 +103,7 @@ function update_cat($cat) {
   $sql = "UPDATE cats SET ";
   $sql .= "cat_name= '" . mysqli_real_escape_string($db, $cat['cat_name']) . "', ";
   $sql .= "age= '" . mysqli_real_escape_string($db, $cat['age']) . "', ";
-  $sql .= "position= '" . mysqli_real_escape_string($db, $cat['position']) . "', ";
+  $sql .= "ranking= '" . mysqli_real_escape_string($db, $cat['ranking']) . "', ";
   $sql .= "breed_id= '" . mysqli_real_escape_string($db, $cat['breed_id']) . "', ";
   $sql .= "gender_id= '" . mysqli_real_escape_string($db, $cat['gender_id']) . "' ";
   $sql .= "WHERE id= '" . mysqli_real_escape_string($db, $cat['id']) . "' ";

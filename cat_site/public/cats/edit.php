@@ -18,12 +18,10 @@ if(is_post_request()) {
   //Read values that have been submitted to this page by the form, put then in array
   $cat = [];
   $cat['id'] = $id;
-  // $breed = [];
-  // $breed['id'] = $b_id;
 
   //define default values for page
   $cat['cat_name'] = $_POST['cat_name'] ?? '';
-  $cat['position'] = $_POST['position'] ?? '';
+  $cat['ranking'] = $_POST['ranking'] ?? '';
   $cat['visible'] = $_POST['visible'] ?? '';
   $cat['breed_id'] = $_POST['breed_id'] ?? '';
   $cat['gender_id'] = $_POST['gender_id'] ?? '';
@@ -64,84 +62,87 @@ $cat_count = cat_count();
   <div class="content-wrap">
 
     <!-- EDIT CAT FORM -->
-    <form id="edit_cat_form"  name="edit_cat_form" action="<?php echo url_for('cats/edit.php?id=' . htmlspecialchars(urlencode($id)));?>" method="post">
-      <p class="validate" id="formerrorname"></p>
-      <p class="validate" id="formerrorage"></p>
+    <!-- sends form data to edit.php -->
+    <div>
+      <form id="edit_cat_form"  name="edit_cat_form" action="<?php echo url_for('cats/edit.php?id=' . htmlspecialchars(urlencode($id)));?>" method="post">
+        <p class="validate" id="formerrorname"></p>
+        <p class="validate" id="formerrorage"></p>
 
-      <!-- CAT NAME -->
-      <div>
-        <label for="cat_name">Cat Name</label>
-        <!-- displays the cat name which has been submitted on the form -->
-        <input type="text" id="cat_name" name="cat_name" value="<?php echo htmlspecialchars($cat['cat_name']); ?>"><br>
-      </div>
+        <!-- CAT NAME -->
+        <div>
+          <label for="cat_name">Cat Name: </label>
+          <!-- displays the cat name which has been submitted on the form -->
+          <input type="text" id="cat_name" name="cat_name" value="<?php echo htmlspecialchars($cat['cat_name']); ?>"><br>
+        </div>
 
-      <!-- AGE -->
-      <div>
-        <label for="age">Age</label>
-        <!-- displays the cat age which has been submitted on the form -->
-        <input type="text" id="age" name="age" value="<?php echo htmlspecialchars($cat['age']); ?>"><br>
-      </div>
+        <!-- AGE -->
+        <div>
+          <label for="age">Age: </label>
+          <!-- displays the cat age which has been submitted on the form -->
+          <input type="text" id="age" name="age" value="<?php echo htmlspecialchars($cat['age']); ?>"><br>
+        </div>
 
-      <!-- POSITION -->
-      <div>
-        <label for ="position">Position</label>
-        <select id="position" name="position">
-          <!-- create a loop to display each position in list (using a count of cats in the table) -->
-          <?php
-          for($i=1; $i <= $cat_count; $i++) {
-            echo "<option value=\"{$i}\"";
-            if($cat["position"] == $i) {
-              echo " selected";
+        <!-- RANKING -->
+        <div>
+          <label for ="ranking">Ranking: </label>
+          <select id="ranking" name="ranking">
+            <!-- create a loop to display a list of numbers using a count of cats in the table -->
+            <?php
+            for($i=1; $i <= $cat_count; $i++) {
+              echo "<option value=\"{$i}\"";
+              if($cat["ranking"] == $i) {
+                echo " selected";
+              }
+              echo ">{$i}</option>";
             }
-            echo ">{$i}</option>";
-          }
-          ?>
-        </select><br>
-      </div>
+            ?>
+          </select><br>
+        </div>
 
-      <!-- GENDER -->
-      <div>
-        <label for ="gender">Gender: </label>
-        <select name="gender_id">
-          <!-- create a loop to display each breed in list -->
-          <?php
-          $gender_set = find_all_genders();
-          while($gender = mysqli_fetch_assoc($gender_set)) {
-            echo "<option value=\"" . htmlspecialchars($gender['gender_id']) . "\"";
-            if($cat["gender_id"] == $gender['gender_id']) {
-              echo " selected";
+        <!-- GENDER -->
+        <div>
+          <label for ="gender">Gender: </label>
+          <select name="gender_id">
+            <!-- create a loop to display each breed in list -->
+            <?php
+            $gender_set = find_all_genders();
+            while($gender = mysqli_fetch_assoc($gender_set)) {
+              echo "<option value=\"" . htmlspecialchars($gender['gender_id']) . "\"";
+              if($cat["gender_id"] == $gender['gender_id']) {
+                echo " selected";
+              }
+              echo ">" . htmlspecialchars($gender['gender_name']) . "</option>";
             }
-            echo ">" . htmlspecialchars($gender['gender_name']) . "</option>";
-          }
-          mysqli_free_result($gender_set);
-          ?>
-        </select><br>
-      </div>
+            mysqli_free_result($gender_set);
+            ?>
+          </select><br>
+        </div>
 
-      <!-- BREED -->
-      <div>
-        <label for ="breed">Breed: </label>
-        <select name="breed_id">
-          <!-- create a loop to display each breed in list -->
-          <?php
-          $breeds_set = find_all_breeds();
-          while($breed = mysqli_fetch_assoc($breeds_set)) {
-            echo "<option value=\"" . htmlspecialchars($breed['breed_id']) . "\"";
-            if($cat["breed_id"] == $breed['breed_id']) {
-              echo " selected";
+        <!-- BREED -->
+        <div>
+          <label for ="breed">Breed: </label>
+          <select name="breed_id">
+            <!-- create a loop to display each breed in list -->
+            <?php
+            $breeds_set = find_all_breeds();
+            while($breed = mysqli_fetch_assoc($breeds_set)) {
+              echo "<option value=\"" . htmlspecialchars($breed['breed_id']) . "\"";
+              if($cat["breed_id"] == $breed['breed_id']) {
+                echo " selected";
+              }
+              echo ">" . htmlspecialchars($breed['breed_name']) . "</option>";
             }
-            echo ">" . htmlspecialchars($breed['breed_name']) . "</option>";
-          }
-          mysqli_free_result($breeds_set);
-          ?>
-        </select><br>
-      </div>
+            mysqli_free_result($breeds_set);
+            ?>
+          </select><br>
+        </div>
 
-      <!--SUBMIT BUTTON-->
-      <div>
-        <input class="create_cat_button" type="submit" value="Edit Cat">
-      </div>
-    </form>
+        <!--SUBMIT BUTTON-->
+        <div>
+          <input class="create_cat_button" type="submit" value="Edit Cat">
+        </div>
+      </form>
+    </div>
 
     <!-- Back Link -->
     <div class="back-link">

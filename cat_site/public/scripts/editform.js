@@ -2,7 +2,6 @@
 ////////EDIT CAT FORM VALIDATION///////
 //ALERT to prevent form submission when name is blank andwhen age is not a valid number < 25
 document.edit_cat_form.onsubmit = function() {
-  // var name = document.create_cat_form.cat_name.value;
   var age = document.edit_cat_form.age.value;
   var name = document.edit_cat_form.cat_name.value;
   if (name==="" || isNaN(age) || Number(age) > 25 || age=="") {
@@ -36,12 +35,12 @@ var age = document.edit_cat_form.age.value;
 ///////////OTHER JAVASCRIPT FUN THINGS////////////////
 //EDIT CAT//
 //target the select drop down option part of the form - do something when user changes this
-document.edit_cat_form.position.onchange = function() {
+document.edit_cat_form.ranking.onchange = function() {
   //create a variable for the index of the selected option (which is considered an array)
-  var id = document.edit_cat_form.position.selectedIndex;
+  var id = document.edit_cat_form.ranking.selectedIndex;
   //create a new variable for the value against the selected index
-  var position = document.edit_cat_form.position[id].value;
-  if (position = 1) {
-    document.getElementById("test").innerHTML = "IM DOING A TEST YOU JUST SELETCTED POSITION ONE MATE!!";
+  var ranking = document.edit_cat_form.ranking[id].value;
+  if (ranking = 1) {
+    document.getElementById("test").innerHTML = "IM DOING A TEST YOU JUST SELETCTED TOP RANKING MATE!!";
   }
 }

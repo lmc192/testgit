@@ -1,7 +1,4 @@
 <?php
-
-  // Changed syntax slightly to:  $result = mysqli_query($db, $sql); //REMOVED TO MAKE CONNECTION OBJECT ORIENTATED
-
 // Function to run query to get all data from gender
 function find_all_genders() {
   //get global db variable to access it
@@ -9,8 +6,7 @@ function find_all_genders() {
   //SQL Select Query
   $sql = "SELECT * FROM genders";
   //Get data
-  // $result = $db->query($sql);
-  $result = mysqli_query($db, $sql);
+  $result = $db->query($sql);
   // Test if query sucessful
   confirm_result_set($result);
   return $result;
@@ -52,10 +48,8 @@ function find_cat_by_id($id) {
   $sql = "SELECT * FROM cats c
   INNER JOIN breeds b ON c.breed_id = b.breed_id
   INNER JOIN genders d on c.gender_id = d.gender_id ";
-  //http://php.net/manual/en/mysqli.real-escape-string.php - Escapes special characters in a string for use in an SQL statement, taking into account the current charset of the connection
-  //Helps prevent SQLi
-  $sql .= "WHERE c.id= ' " . mysqli_real_escape_string($db, $id) . " ' "; // SELECT * FROM cats WHERE id = '$id';
-  //echo $sql;
+  // Escapes special characters in a string for use in an SQL statement. Helps prevent SQLi
+  $sql .= "WHERE c.id= ' " . mysqli_real_escape_string($db, $id) . " ' ";
   $result = $db->query($sql);
   confirm_result_set($result);
   $cat = mysqli_fetch_assoc($result);
@@ -70,7 +64,7 @@ function insert_cat($cat) {
   //get global db variable to access it
   global $db;
 
-  //SQL INSERT query.  Divided up so values can be used later.  include single quote around variables for security
+  //SQL INSERT query. include single quote around variables for security
   $sql = "INSERT INTO cats (cat_name, age, ranking, breed_id, gender_id) ";
   $sql .= "VALUES (";
   $sql .= " '" . mysqli_real_escape_string($db, $cat['cat_name']) . "', ";
@@ -110,7 +104,6 @@ function update_cat($cat) {
   $sql .= "LIMIT 1";
 
   //SQL UPDATE returns true / false
-  // $result = mysqli_query($db, $sql); //REMOVED TO MAKE CONNECTION OBJECT ORIENTATED
   $result = $db->query($sql);
 
   if($result) {

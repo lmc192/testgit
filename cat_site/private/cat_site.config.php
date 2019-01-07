@@ -6,4 +6,4 @@ define("DB_USER", "student");
 define("DB_PASS", "student");
 define("DB_NAME", "cat_site");
 
- ?>
+?>

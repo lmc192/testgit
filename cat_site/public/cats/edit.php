@@ -1,5 +1,3 @@
-<!-- single page for sumbission here - not for new and create consider doing this later? -->
-
 <!-- load all functions - Need full file path here as path definitions are contained within start.php -->
 <?php require_once('../../private/start.php');
 
@@ -103,7 +101,7 @@ $cat_count = cat_count();
         <div>
           <label for ="gender">Gender: </label>
           <select name="gender_id">
-            <!-- create a loop to display each breed in list -->
+            <!-- create a loop to display each gender in list -->
             <?php
             $gender_set = find_all_genders();
             while($gender = mysqli_fetch_assoc($gender_set)) {
@@ -151,8 +149,6 @@ $cat_count = cat_count();
 
     <!-- show image for cat -->
     <img class="cat-img" src="<?php echo url_for('/images/uploads/' . $cat['file_path']); ?>  " ><br><br>
-
-
 
   </div>
 </div>

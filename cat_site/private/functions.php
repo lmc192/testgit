@@ -1,4 +1,3 @@
-<!-- function library -->
 <?php
 // works out if a path is absolute or relative and fixes the path
 function url_for($script_path) {

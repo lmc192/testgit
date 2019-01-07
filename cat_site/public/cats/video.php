@@ -22,7 +22,7 @@
   <div class="content-wrap">
 
     <!-- video link -->
-<p name="video" id="video"> </p>
+    <p name="video" id="video"> </p>
 
     <!-- Back Link -->
     <div class="back-link">
@@ -39,18 +39,18 @@
 <script type="text/javascript">
 //video array
 var videos = [
-    '0Bmhjf0rKe8', //Suprised Kitty
-    'yzP3kyAukHw', //Marmalade
-    'J---aiyznGQ', //Keyboard Cat
-    'DLzxrzFCyOs', //RickRoll!
-    'hPzNl6NKAG0', //Maru
-    'INscMGmhmX4', //Grumpy Cat
-    '5fGQLHKx-Y0', //Nora
-    'ElzPZNSdd5w', //Oskar
-    'z3U0udLH974', //talking cats
-    'NBQ-IzyhiWs', //Sho Ko balloon
-    'QH2-TGUlwu4', //Nyan Cat
-    'fzzjgBAaWZw' //stalking cat
+  '0Bmhjf0rKe8', //Suprised Kitty
+  'yzP3kyAukHw', //Marmalade
+  'J---aiyznGQ', //Keyboard Cat
+  'DLzxrzFCyOs', //RickRoll!
+  'hPzNl6NKAG0', //Maru
+  'INscMGmhmX4', //Grumpy Cat
+  '5fGQLHKx-Y0', //Nora
+  'ElzPZNSdd5w', //Oskar
+  'z3U0udLH974', //talking cats
+  'NBQ-IzyhiWs', //Sho Ko balloon
+  'QH2-TGUlwu4', //Nyan Cat
+  'fzzjgBAaWZw' //stalking cat
 ];
 var index=Math.floor(Math.random() * videos.length);
 var videolink='<iframe width="890" height="500" src="http://www.youtube.com/embed/' + videos[index] + '" frameborder="0" allowfullscreen></iframe></div>';

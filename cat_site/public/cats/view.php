@@ -1,11 +1,11 @@
-<!-- VIEW PAGE (consider renaming?) THIS DISPLAYS DETAILS OF THE CAT IN THE DATABASE -->
+<!-- VIEW PAGE -  DISPLAYS DETAILS OF THE CAT IN THE DATABASE -->
 
 <!-- load all functions - Need full file path here as path definitions are contained within start.php -->
 <?php require_once('../../private/start.php'); ?>
 
 <!-- gets value and assign to local variable -->
 <!-- default value is currently set to 1 -->
-<?php  $id = $_GET['id'] ?? '1'; // PHP > v7.0
+<?php  $id = $_GET['id'] ?? '1';
 
 //get array and assign to variable to use in the page and display details
 $cat = find_cat_by_id($id);
@@ -42,7 +42,6 @@ $cat = find_cat_by_id($id);
 
     <!-- show image for cat -->
     <img class="cat-img" src="<?php echo url_for('images/uploads/' . $cat['file_path']); ?>  " ><br><br>
-
 
   </div>
 </div>

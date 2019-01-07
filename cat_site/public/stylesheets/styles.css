@@ -11,21 +11,7 @@
   font-family: 'little-lord-font-leroy';
   src: url(../fonts/little-lord-font-leroy/little-lord-font-leroy.ttf);
 }
-@font-face {
-  font-family: 'the-bold-font';
-  src: url(../fonts/the-bold-font/theboldfont.ttf);
-}
 
-/**** GLOBAL ****/
-/* Box Fix */
-/* apply a natural box layout model to all elements, but allowing components to change */
-/* https://www.paulirish.com/2012/box-sizing-border-box-ftw/ */
-/* html {
-  box-sizing: border-box;
-}
-*, *:before, *:after {
-  box-sizing: inherit;
-} */
 body {
   border: 1px solid black;
   font-family: 'Calisto MT', serif;
@@ -57,7 +43,7 @@ p {
 .intro {
   background: #CF6EC8;
   text-align: center;
-  padding: 20px;
+  padding: 30px;
   margin: 0 auto;
 }
 
@@ -87,7 +73,6 @@ a:hover {
 }
 
 /**** TABLE ****/
-/* https://divtable.com/table-styler/ */
 
 table {
   /* https://www.granneman.com/webdev/coding/css/centertables */
@@ -110,7 +95,6 @@ table.table-style thead {
 }
 
 table.table-style td, table.table-style th {
-  /* border: 1px solid red; */
   padding: 10px 10px;
   text-align: center;
 }
@@ -170,9 +154,6 @@ input[type=submit]:hover {
 .cat-img {
   width: 200px;
   padding: 20px;
-  /* border-radius: 50%; */
-  /* float: left; */
-  /* margin-right: 30px; */
 }
 
 /**** HEADER AND FOOTER ****/
@@ -196,5 +177,4 @@ header img {
 }
 header h1 {
   display: inline;
-  /* padding: 50px; */
 }

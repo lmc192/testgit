@@ -16,11 +16,11 @@ if(is_post_request()) {
   // check for true value then redirect with new value.
   $result = insert_cat($cat);
   if($result === true) {
-    //http://php.net/manual/en/mysqli.insert-id.php - Returns the auto generated id used in the latest query
+    // Returns the auto generated id used in the latest query
     $new_id = mysqli_insert_id($db);
     redirect_to(url_for('cats/view.php?id=' . $new_id));
-  // if not post request, redirect back to form
-}
+    // if not post request, redirect back to form
+  }
 } else {
   //display the blank form
 }
@@ -93,7 +93,7 @@ $cat["ranking"] = $cat_count;
         <div>
           <label for ="gender">Gender: </label>
           <select name="gender_id">
-            <!-- create a loop to display each breed in list -->
+            <!-- create a loop to display each gender in list -->
             <?php
             $gender_set = find_all_genders();
             while($gender = mysqli_fetch_assoc($gender_set)) {
@@ -136,14 +136,11 @@ $cat["ranking"] = $cat_count;
     <!-- show image for cat -->
     <img class="cat-img" src= "<?php echo url_for('/images/uploads/default.jpg');?>" ><br><br>
 
-
   </div>
 </div>
 
-<!-- TESTING JAVASCRIPT -->
 <!-- link to javascript -->
 <script src="<?php echo url_for('../public/scripts/createform.js'); ?>"></script>
-
 
 <!-- get footer -->
 <?php include(SHARED_PATH . '/footer.php'); ?>

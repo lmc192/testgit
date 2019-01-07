@@ -1,4 +1,6 @@
-<!-- loads code in functions.php and other code libraries -->
+<!-- Initialises all required functions,
+global variables, constants and database connections
+used throughout the site -->
 <?php
 //turn on output buffering first
 ob_start();

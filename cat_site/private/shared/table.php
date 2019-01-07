@@ -53,7 +53,7 @@
 			</table><br>
 			<!-- free memory -->
 			<?php mysqli_free_result($cats);?>
-<!-- random cat video link (for fun) -->
+			<!-- random cat video link (for fun) -->
 			<p><a href="<?php echo url_for('cats/video.php'); ?>">Click here to see a video!</a></p>
 		</div>
 	</div>

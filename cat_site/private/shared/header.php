@@ -15,17 +15,17 @@
   <!-- link to stylesheet -->
   <link rel="stylesheet" href="<?php echo url_for('stylesheets/styles.css'); ?>">
 
-   <!-- get page title from page -->
+  <!-- get page title from page -->
   <title>CatSite - <?php echo htmlspecialchars($page_title); ?></title>
 
-<!-- HEADER CONTENT -->
+  <!-- HEADER CONTENT -->
 </head>
 <body>
   <header>
     <div class="content-wrap">
-    <!-- Header -->
-<img src="<?php echo url_for('images/header/cat_jump_2_light.png'); ?>" alt="Jump1">
-<h1>CAT SITE</h1>
-<img src="<?php echo url_for('images/header/cat_jump_light_right.png'); ?>" alt="Jump2">
-  </div>
+      <!-- Header -->
+      <img src="<?php echo url_for('images/header/cat_jump_2_light.png'); ?>" alt="Jump1">
+      <h1>CAT SITE</h1>
+      <img src="<?php echo url_for('images/header/cat_jump_light_right.png'); ?>" alt="Jump2">
+    </div>
   </header>
